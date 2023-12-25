@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from flask import Flask
 # from .blueprints.department_page.Departments import emp_department
 # from .blueprints.jobDept.Jobs_has_Departments import jobdepartment
-from .blueprints.main_page.index import index_page
+from blueprints.main_page.index import index_page
 # from .blueprints.deptEmp_page.Department_has_EmploymentTypes import dept_emp
 # from .blueprints.schedule_page.Schedules import emp_schedule
 # from .blueprints.employee_page.Employees import emp_main
