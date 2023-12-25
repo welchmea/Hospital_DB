@@ -1,6 +1,6 @@
 # All blueprints folder .py files were adapted from source code
 # CS 340 flask-starter-app
-
+from dotenv import load_dotenv
 from flask import Flask
 # from .blueprints.department_page.Departments import emp_department
 # from .blueprints.jobDept.Jobs_has_Departments import jobdepartment
@@ -10,6 +10,7 @@ from .blueprints.main_page.index import index_page
 # from .blueprints.employee_page.Employees import emp_main
 # from .blueprints.job_page.Jobs import emp_job
 # from .blueprints.empTypes.EmploymentTypes import employType
+load_dotenv()
 
 app = Flask(__name__)
 
