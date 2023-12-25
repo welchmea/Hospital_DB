@@ -1,0 +1,53 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<script src="less.js" type="text/javascript"></script>
+<script src="./script.js"></script>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+	<title>Add New Employee</title>
+</head>
+<body>
+    <h1>Add Employee</h1>
+        <!-- form to add data in employees-->
+        <form id="add_employee" action="/add_employee" method="POST">
+            <fieldset>
+                <label for="name">Employee Name:</label>
+                <input type="text" value="{{request.form[1]}}" id="name" name="name" pattern="[A-Za-z]{0, 45}" placeholder="First and Last Name" size=40 required><br>
+
+                <label for="email">Email:</label>
+                <input type="email" value="{{request.form[2]}}" id="email" name="email" pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" placeholder="username@email.com" size=40 ><br>
+                
+                <label for="phoneNum">Phone Number:</label>
+                <input type="text" value="{{request.form[3]}}" id="phoneNum" name="phoneNum" placeholder="800-555-1212" required><br>
+                    
+                <label for="typeName">Employment Status:</label>
+				<select class="form-control" id="typeName" name="typeName" required>
+                <option value="0">&nbsp;</option>
+                    {% for data in empTypeFK %}
+                        <option value="{{data[0]}}">{{data[0]}}</option>
+                    {% endfor %} 
+				</select><br>
+                    
+                <label for="name">Job Name:</label>
+                <select class="form-control" id="jobID" name="jobID" required>
+                <option value="0">&nbsp;</option>
+					{% for data in jobIDFK %}
+                        <option value="{{data[1]}}">{{data[1]}}</option>
+                    {% endfor %} 
+                </select><br>
+
+                <label for="departmentID">Department Name:</label>
+			    <select class="form-control" id="departmentID" name="departmentID">
+                <option value="0">&nbsp;</option>
+					{% for data in departmentFK %}
+                        <option value="{{data[1]}}">{{data[1]}}</option>
+                    {% endfor %} 
+		        <br></select>
+            </fieldset>
+
+            <input type="submit" value="Add Employee" name="add_employee" >
+            <a href="/employees"><input type="button" value="Cancel"></a>
+        </form>
+</body>
+</html>

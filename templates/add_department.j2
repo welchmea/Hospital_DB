@@ -1,0 +1,28 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<script src="less.js" type="text/javascript"></script>
+<script src="./script.js"></script>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+	<title>Add New Department</title>
+</head>
+<body>
+    <h1>Add Department</strong></h1>
+        <!-- form to add data in departments-->
+        <form id="addDepartment" action="/add_department" method="POST">
+            <fieldset>
+                <label for="depName">Department Name:</label>
+                <input type="text" value="{{request.form[depName]}}"  id="depName" name="depName" pattern="[A-Za-z]{0, 30}" placeholder="Enter the name of a Department." size=50 required>
+                <br>
+
+                <label for="description">Description:</label>
+                <input type="text" value="{{request.form[description]}}" id="description" name="description" pattern="[A-Za-z]{0, 100}" placeholder="Enter a brief description." size=100>
+                <br>
+            </fieldset>
+            
+            <input type="submit" value="Add Department" name="add_department">
+            <a href="/departments"><input type="button" value="Cancel"></a>
+        </form>
+</body>
+</html>

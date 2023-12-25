@@ -1,0 +1,89 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<link rel="stylesheet" href="/static/style.css">
+<meta charset="UTF-8">
+<title>Edit Employee</title>
+</head>
+
+<body>
+    <table border="1" cellpadding="5"> 
+        <caption><strong> Updating Employee: </strong></caption>
+        <!-- Access data tuple passed from app.py -->
+        {% if employees_data %}
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Job Name</th>
+                    <th>Department Name</th>
+                    <th>Employment Status</th>
+                </tr>
+
+            <tbody>
+                <!-- Iterates through every item in data -->
+                <tr>
+                {% for item in employees_data %}
+                    <!-- Iterates through every key in the current item dictionary -->
+                    {% for key in item %}
+                    <!-- Creates a <td> element with the value of that key in it -->
+                    <td>{{key}}</td> 
+                    {% endfor %} 
+                </tr> 
+                {% endfor %} 
+        {% endif %}   
+    </table>
+        <!-- form to edit data in employees-->
+        <form id="edit_employee" action="/edit_employee/{{employees_data[0].employeeID}}" method="POST">
+            <legend><strong>Edit Employee</strong></legend>
+                <fieldset>
+                <!-- Preset form inputs to match attributes currently stored for 'employeeID' of employee to be updated via value= and accessing our passed data tuple -->
+                <!-- Create hidden form input to store the passed 'employeeID' of employee being edited so it can bed accessed in 'POST' method in app.py -->
+                <input type="hidden" value="{{employees_data[0].employeeID}}" id="employeeID" name="employeeID" required>
+                <label for="name">Employee Name:</label>
+                <input type="text" value="{{employees_data[0].name}}" id="name" name="name" pattern="[A-Za-z]{0, 45}" required><br>
+                    
+                <label for="email">Email:</label>
+                <input type="email" value="{{employees_data[0].email}}" id="email" name="email"pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" ><br>
+
+                <label for="phoneNum">Phone Number:</label>
+                <input type="text" value="{{employees_data[0].phoneNum}}"  id="phoneNum" name="phoneNum" required><br>
+
+                <label for="typeName">Employment Status:</label>
+                <select class="form-control" id="typeName" name="typeName" required><br>
+                     
+                    {% for data in empTypeFK %}
+                        <option value="{{data[0]}}" >{{data[0]}}</option>
+                    {% endfor %} 
+                </select>
+
+                <label for="jobID">Job Name:</label>
+                <select class="form-control" id="jobID" name="jobID" pattern="[0-4]{1}" placeholder="" required>
+
+                    {% for data in jobIDFK %}
+                        {% if data['jobID'] == employees_data[0].jobID %}
+                            <option value="{{data[1]}}">{{data[1]}}</option>
+                            {% else %}
+                            <option value="{{data[1]}}">{{data[1]}}</option>
+                        {% endif %}
+                    {% endfor %} 
+                </select>
+
+                <label for="departmentID">Department Name:</label>
+                <select class="form-control" id="departmentID" name="departmentID">
+                    {% for data in departmentFK %}
+                        {% if data['departmentID'] == employees_data[0].departmentID %}
+                            <option value="{{data[1] }}">{{data[1]}}</option>
+                        {% else %}
+                            <option value="{{data[1]}}">{{data[1]}}</option>
+                        {% endif %}
+                    {% endfor %} 
+                </select>
+            </fieldset>
+
+            <input type="submit" value="Update Employee" name="edit_employee">
+            <a href="/employees"><input type="button" value="Cancel"></a>
+        </form>
+</html>

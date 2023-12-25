@@ -1,0 +1,34 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html lang="en">
+<head>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+<title>Add New Employment Type to Departments</title>
+</head>
+
+<body>
+<h2>Add Employment Type to a Department</h2>
+        <!-- form to add data in departments has employmentTypes-->
+        <form id="add_dep_empTypes" action="/add_dep_empTypes" method="POST">
+            <fieldset>
+                <label for="departmentID">Department Name:</label>
+				<select class="form-control" id="departmentID" name="departmentID">
+					{% for data in departmentFK %}
+                        <option value="{{data[1]}}">{{data[1]}}</option>
+                    {% endfor %} 
+				<br></select>
+                    
+                <label for="typeName">Employment Status:</label>
+				<select class="form-control" id="typeName" name="typeName">
+                    {% for data in empTypeFK %}
+                        <option value="{{data[0]}}">{{data[0]}}</option>
+                    {% endfor %} 
+				</select>
+                
+                <input type="submit" value="Add New Employment Type to Departments" name="add_dep_empTypes">
+                <a href="/dep_empTypes"><input type="button" value="Cancel"></a>
+
+            </fieldset>        
+        </form>
+</body>
+</html>

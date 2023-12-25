@@ -1,0 +1,48 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+<title>Department Employment Types</title>
+</head>
+<header>
+	  <nav>
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+	  </nav>
+</header>
+<body>
+<h1>Department Employment Types</h1>
+<!-- home page Departments_has_EmploymentTypes-->
+    <h2>Department Employment Types</h2>
+    <table>
+    <caption><strong>Current Department Employment Type Data</strong></caption>
+    {% if dep_empTypes_data %}
+        <thead>
+            <tr>
+                <th>Department Employment Status ID</th>
+                <th>Employment Status</th>
+                <th>Department Name</th>
+                <th>Delete</th>
+            </tr>
+        <tbody>
+            {% for data in dep_empTypes_data %}
+            <tr>
+                {% for i in data %}
+                <td> {{i}} </td>
+                {% endfor %}
+
+                <td><a href="delete_dep_empTypes/{{data[0]}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+    <button><a href='add_dep_empTypes'>Add Employment Type to Department</a></strong></button>
+</body>
+</html>

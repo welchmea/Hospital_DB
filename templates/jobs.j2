@@ -1,0 +1,51 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+<title>Jobs</title>
+</head>
+<header>
+	  <nav>
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+	  </nav>
+</header>
+<body>
+<!-- home page Jobs-->
+    <h2>Jobs</h2>
+    <table>
+    <caption><strong>Current Job Data</strong></caption>
+    {% if jobs_data %}
+        <thead>
+            <tr>
+                {% for key in jobs_data[0] %}
+                <th scope='col' data-field='{{ key }}' data-filter-control='input'>{{ key }}</th>
+                {% endfor %}
+                <th></th>
+                <th></th>
+            </tr>
+        <tbody>
+            {% for data in jobs_data %}
+            <tr>
+                {% for i in data %}
+                <td> {{i}} </td>
+                {% endfor %}
+
+                <td><a href='edit_job/{{data[0]}}'>Update</a></td>
+                <td><a href="delete_jobs/{{data[0]}}">Delete</a></td>
+
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+    <button><a href='add_job'>Add New Job</a></button>
+    
+</body>
+</html>

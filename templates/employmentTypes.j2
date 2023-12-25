@@ -1,0 +1,47 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+<title>Employment Types</title>
+</head>
+<header>
+	  <nav>
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+	  </nav>
+</header>
+<body>
+<!-- home page EmploymentTypes-->
+    <h2>Employment Types</h2>
+    <table>
+    <caption><strong>Current Employment Type Data</strong></caption>
+    {% if employmentTypes_data %}
+        <thead>
+            <tr>
+               <th>Employment Status</th>
+               <th>Hours Allowed to Work</th>
+                <th></th>
+            </tr>
+        <tbody>
+            {% for data in employmentTypes_data %}
+            <tr>
+                {% for i in data %}
+                <td> {{i}} </td>
+                {% endfor %}
+
+                <td><a href="delete_employmentTypes/{{data[0]}}">Delete</a></td>
+
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+    <button><a href='add_employmentTypes'>Add New Employment Type</a></button>
+</body>
+</html>

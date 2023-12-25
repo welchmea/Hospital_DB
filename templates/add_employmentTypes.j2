@@ -1,0 +1,26 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+<title>Add New Employment Type</title>
+</head>
+
+<body>
+ <h2>Add Employment Type</strong></h2>
+        <!-- form to add data in Employment Types-->
+        <form id="addemploymentTypes" action="/add_employmentTypes" method="POST">
+            <fieldset>
+                <label for="typeName">Employment Type:</label>
+                <input type="text" value="{{request.form[typeName]}}" id="typeName" name="typeName"  pattern="[A-Za-z]{0, 20}" placeholder="e.g. Resident, PRN" size= 50 required>
+                </br>
+
+                <label for="hoursAllow">Hours Allowed to Work:</label>
+                <input type="number" value="{{request.form[hoursAllow]}}" id="hoursAllow" name="hoursAllow" placeholder="Per Week" required>
+
+            </fieldset>
+            <input type="submit" value="Add Employment Type" name="add_employmentTypes" >
+            <a href="/employmentTypes"><input type="button" value="Cancel"></a>
+        </form>
+</body>
+</html>

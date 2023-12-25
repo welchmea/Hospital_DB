@@ -1,0 +1,58 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<script src="less.js" type="text/javascript"></script>
+<script src="./script.js"></script>
+<link rel="stylesheet" href="/static/style.css">
+<meta charset="UTF-8">
+	<title>Edit Department</title>
+</head>
+
+<body>
+    <table border="1" cellpadding="5"> 
+        <caption><strong> Updating Department: </strong></caption>
+        <br>
+        <!-- Access data tuple passed from app.py -->
+        {% if departments_data %}
+            <thead>
+                <tr>
+                    <th>Department ID</th>
+                    <th>Department Name</th>
+                    <th>Description</th>
+                </tr>
+
+            <tbody>
+                <!-- Iterates through every item in data -->
+                {% for item in departments_data %}
+                <tr>
+                    <!-- Then iterate through every key in the current item tuple -->
+                    {% for key in item %}
+                        
+                        <!-- Create a <td> element with the value of that key in it -->
+                        <td>{{key}}</td> 
+                        {% endfor %} 
+                </tr> 
+                {% endfor %} 
+    </table>
+
+        <!-- form to edit data in departments-->
+        <form id="updateDepartment" action="/edit_department/{{departments_data[0][0]}}" method="post">
+            <legend><strong>Edit Department</strong></legend>
+                <fieldset>
+                    <!-- We can preset form inputs to match attributes currently stored for 'id' of department to be updated via value= and accessing our passed data tuple -->
+                    <!-- Create hidden form input to store the passed 'id' of the department we are editing so we can access it easily in our 'POST' method in our app.py -->
+
+                    <input type="hidden" value="{{departments_data[0][0]}}" class="form-control" id="departmentID" name="departmentID" required>
+
+                    <label for="model">Department Name:</label>
+                    <input type="text" value="{{departments_data[0].depName}}" id="depName" name="depName" pattern="[A-Za-z]{0, 30}" required>
+                    <br>
+                    <label for="year">Description:</label>
+                    <input type="text" value="{{departments_data[0].description}}" id="description" name="description" pattern="[A-Za-z]{0, 100}" size=100>
+                
+                </fieldset>
+                <input type="submit" value="Update Department" name="Update_Department">
+                <a href="/departments"><input type="button" value="Cancel"></a>
+        </form>
+        {% endif %} 
+</html>

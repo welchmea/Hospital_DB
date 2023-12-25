@@ -1,0 +1,26 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html lang="en">
+<head>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <title>Add New Job</title>
+</head>
+
+<body>
+<h2>Add Job</h2>
+        <!-- form to add data in jobs-->
+        <form id="addJob" action="/add_job" method="POST">
+            <fieldset>
+                <label for="jobName">Job Name:</label>
+                <input type="text" value="{{request.form[jobName]}}" id="jobName" name="jobName" pattern="[A-Za-z]{0, 100}" placeholder="Enter the name of the Job" size = 50 required><br>
+                
+                <label for="description">Description:</label>
+                <input type="text" value="{{request.form[description]}}"id="description" name="description" pattern="[A-Za-z]{0, 255}" placeholder="Enter a brief description of job duties." size=100 ><br>
+
+                <input type="submit" value="Add Job" name="add_job">
+                <a href="/jobs"><input type="button" value="Cancel"></a>
+            </fieldset>
+        </form>
+</body>
+</html>

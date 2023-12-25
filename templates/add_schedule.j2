@@ -1,0 +1,70 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+<title>Add New Schedule</title>
+
+</head>
+<body>
+<h2>Add Schedule</h2>
+    <!-- form to add data in Schedules-->
+    <form id="addSchedules" action="/add_schedule" method="POST">
+        <fieldset>
+            <label for="scheduleType">Schedule Type:</label>
+            <input type="text" value="{{request.form[scheduleType]}}"  id="scheduleType" name="scheduleType" pattern="[A-Za-z]{0, 50}" placeholder="e.g. Daily, Holiday..." size=50 required>
+            <br>
+
+            <label for="shift">Shift:</label>
+            <input type="text" value="{{request.form[shift]}}" id="shift" name="shift" pattern="[A-Za-z]{0, 50}" placeholder="e.g. Night, Swing..." size=50 required >
+            <br>
+
+            <label for="startTime">Start Time:</label>
+            <input type="datetime-local" value="{{request.form[startTime]}}" id="startTime" name="startTime" required>
+            <br>
+
+            <label for="endTime">End Time:</label>
+            <input type="datetime-local" value="{{request.form[endTime]}}"  id="endTime" name="endTime" size=50 required>
+            <br>
+
+            <label for="employeeID">Employee Name:</label>
+            <select class="form-control" id="employeeID" name="employeeID" pattern="[0-4]{1}" placeholder="" required>
+            
+            {% for data in employeeFK %}
+                <option value="{{data[1]}}">{{data[1]}}</option>
+            {% endfor %} 
+            </select>
+            <br>
+
+            <label for="typeName">Employment Status:</label>
+            <select class="form-control" id="typeName" name="typeName" >
+
+            {% for data in empTypeFK %}
+                <option value="{{data[0]}}" >{{data[0]}}</option>
+            {% endfor %} 
+            </select>
+            <br>
+
+            <label for="departmentID">Department Name:</label>
+            <select class="form-control" id="departmentID" name="departmentID" pattern="[0-4]{1}" placeholder="">
+            
+            {% for data in departmentFK %}
+                <option value="{{data[1]}}">{{data[1]}}</option>
+            {% endfor %} 
+            </select>
+
+        </fieldset>
+        <input type="submit" value="Add Schedule" name="add_schedule">
+        <a href="/schedules"><input type="button" value="Cancel"></a>
+    </form>
+</body>
+</html>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

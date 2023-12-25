@@ -1,0 +1,51 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+<title>Departments</title>
+</head>
+<header>
+	  <nav>
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+	  </nav>
+</header>
+<body>
+
+
+<!-- home page Departments-->
+    <h2>Departments</h2>
+    <table>
+    <caption><strong>Current Department Data</strong></caption>
+    {% if departments_data %}
+        <thead>
+            <tr>
+            <th>Department ID</th>
+            <th>Department Name</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+            </tr>
+        <tbody>
+            {% for data in departments_data %}
+            <tr>
+                {% for i in data %}
+                <td> {{i}} </td>
+                {% endfor %}
+                <td><a href='edit_department/{{data[0]}}'>Update</a></td>
+                <td><a href="delete_departments/{{data[0]}}">Delete</a></td>
+
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+    <button class="add_button"><a href='add_department'>Add New Department</a></button>
+</body>
+</html>

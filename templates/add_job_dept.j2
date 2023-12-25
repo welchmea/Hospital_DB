@@ -1,0 +1,35 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+<title>Add New Job to Department</title>
+</head>
+
+<body>
+<h2>Add Job to Department</h2>
+    <!-- form to add data in job department-->
+    <form id="add_job_dept" action="/add_job_dept" method="POST">
+        <fieldset>
+
+            <label for="jobID">Job Name:</label>
+            <select class="form-control" id="jobID" name="jobID" placeholder="" required>
+
+                {% for data in jobIDFK %}
+                    <option value="{{data[1]}}">{{data[1]}}</option>
+                {% endfor %} 
+            </select>
+
+            <label for="departmentID">Department Name:</label>
+            <select class="form-control" id="departmentID" name="departmentID" pattern="[0-4]{1}" placeholder="" required>
+
+                {% for data in departmentFK %}
+                    <option value="{{data[1]}}">{{data[1]}}</option>
+                {% endfor %} 
+            <br></select>
+        </fieldset>
+        <input type="submit" value="Add Job to Department" name="add_job_dept" >
+        <a href="/jobdept"><input type="button" value="Cancel"></a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<link rel="stylesheet" href="./static/style.css">
+<meta charset="UTF-8">
+<title>Schedules</title>
+</head>
+<header>
+	  <nav>
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+	  </nav>
+</header>
+<body>
+<!-- home page Schedules-->
+    <h2>Schedules</h2>
+    <table>
+    <caption><strong>Current Schedules Data</strong></caption>
+    {% if schedules_data %}
+        <thead>
+            <tr>
+                <th>Schedule ID</th>
+                <th>Type</th>
+                <th>Shift</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Employee Name</th>
+                <th>Employment Status</th>
+                <th>Department Name</th>
+                <th></th>
+            </tr>
+        <tbody>
+            {% for data in schedules_data %}
+            <tr>
+                {% for i in data %}
+                <td> {{i}} </td>
+                {% endfor %}
+
+                <td><a href="delete_schedules/{{data[0]}}">Delete</a></td>
+
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+    <button><a href='add_schedule'>Add New Schedule</a></button>
+    
+</body>
+</html>

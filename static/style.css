@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Gloock&family=Josefin+Slab:wght@600&family=Libre+Caslon+Text&family=Lora&family=Raleway:wght@200&family=Vollkorn+SC&display=swap');
+html,
+
+body {
+  background: linear-gradient(45deg, rgb(86, 86, 86), white);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color:black;
+  margin:auto;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(249, 247, 247, 0.2);
+  padding: 2%;
+  color: black
+}
+header {
+  background: linear-gradient(#5170f7, #bcc5f3);
+}
+h1 {
+  padding: 1%;
+  text-align: left;
+  margin: 0;
+  font-size: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+div {
+  background-color: white;
+  border: solid 1px black;
+  line-height: 25px;
+  padding: 1%;
+  box-shadow: 6px 6px;
+  width: 80%;
+}
+
+div:hover {
+  transform: scale(1.05);
+}
+
+a {
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+}
+a:hover {
+  color:rgb(230, 114, 114);
+}
+nav { 
+overflow: hidden;
+background-color: rgba(255, 255, 255, 0.5);
+display:flex;
+flex-flow: wrap;
+cursor: pointer;
+}
+nav a {
+  text-decoration: none;
+  padding: 2%;
+}
+nav a:hover{
+ text-decoration: none;
+ background-color: white;
+ padding: 2%;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  min-width: 30%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+caption {
+  display: table-caption;
+  text-align: center;
+  color:black;
+  background: linear-gradient(#5170f7, #bcc5f3);
+  padding: 2%;
+}
+th,
+td {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.525);
+  text-align: left;
+}
+thead th {
+  background: linear-gradient(#5170f7, #bcc5f3);
+}
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+label {
+  font-weight: bold;
+  font-size: 130%;
+}
+legend {
+  color: white;
+  font-weight:bold;
+  font-size: large;
+  margin: 2em;
+}
+
+fieldset {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.525);
+  padding: 2%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  margin: 2%;
+}
+
+input[type="text"], input[type="email"], input[type="number"], input[type="datetime-local"] {
+  font-family: 'Raleway', sans-serif;
+  font-size: 130%;
+  padding: 6px;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.676);
+  width:60%;
+}
+input[type="button"],input[type="submit"]{
+  font-family: 'Raleway', sans-serif;
+  background: linear-gradient(#5170f7, #bcc5f3);
+  color: #fff;
+  text-align: center;
+  border:transparent;
+  border-radius: 5px;
+  margin: 2em 5px 0px 3em;
+  padding: 10px;
+  box-shadow: 2px 2px rgb(173, 172, 172);
+}
+option {
+  font-size: 120%;
+}
+label {
+  font-family: 'Raleway', sans-serif;
+}
+::placeholder {
+  font-size: 120%;
+  color:#7b7777;
+}
+
+button {
+  background: linear-gradient(#5170f7, #bcc5f3);
+  font-family: 'Raleway', sans-serif;
+  padding: 10px;
+  margin: 20px 0px 0px 60px;
+}
+
+footer {
+ color:white;
+ font-size: 60%;
+ padding: 2%
+}

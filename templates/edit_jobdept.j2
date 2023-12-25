@@ -1,0 +1,73 @@
+<!-- All templates modified from CS340 flask-starter-app code -->
+<html>
+<head>
+<link rel="stylesheet" href="/static/style.css">
+<meta charset="UTF-8">
+<title>Edit Department Jobs</title>
+</head>
+
+<body>
+        <table border="1" cellpadding="5"> 
+            <caption><strong> Updating Job in Department: </strong></caption>
+            <!-- Access data tuple passed from app.py -->
+            {% if jobdept_data %}
+                <thead>
+                    <tr>
+                        <th>Job Department ID</th>
+                        <th>Job Name</th>
+                        <th>Department Name</th>
+                    </tr>
+
+                <tbody>
+                    <!-- Iterates through every item in data -->
+           
+                    <tr>
+                    {% for item in jobdept_data %}
+                        <!-- Iterates through every key in the current item dictionary -->
+                        {% for key in item %}
+                        <!-- Creates a <td> element with the value of that key in it -->
+                        <td>{{key}}</td> 
+                        {% endfor %} 
+
+                    </tr> 
+                    {% endfor %} 
+                 {% endif %}   
+        </table>
+
+        <!-- form to edit data in job department-->
+        <form id="edit_jobdept" action="/edit_jobdept/{{jobdept_data[0].jobDeptID}}" method="POST">
+            <legend><strong>Edit Job in Department</strong></legend>
+            <fieldset>
+                <!-- Create hidden form input to store the passed 'jobDeptID' of department job being edited so it can be accessed in 'POST' method in app.py -->
+
+                <input type="hidden" value="{{jobdept_data[0].jobDeptID}}" class="form-control" id="jobDeptID" name="jobDeptID" required>
+
+                <label for="jobID">Job Name:</label>
+                <select class="form-control" id="jobID" name="jobID" pattern="[0-4]{1}" placeholder="" required>
+
+                    {% for data in jobIDFK %}
+                        {% if data['jobID'] == jobdept_data[0].jobID %}
+                        <option value="{{data[1]}}" SELECTED>{{data[1]}}</option>
+                        {% else %}
+                        <option value="{{data[1]}}">{{data[1]}}</option>
+                        {% endif %}
+                    {% endfor %} 
+                </select>
+
+                <label for="departmentID">Department Name:</label>
+                <select class="form-control" id="departmentID" name="departmentID" pattern="[0-4]{1}" required>
+
+                {% for data in departmentFK %}
+                    {% if data['departmentID'] == jobdept_data[0].departmentID %}
+                    <option value="{{data[1] }}"SELECTED >{{data[1]}}</option>
+                    {% else %}
+                    <option value="{{data[1]}}">{{data[1]}}</option>
+                    {% endif %}
+                {% endfor %} 
+                </select>
+            
+            </fieldset>
+            <input type="submit" value="Update Job in Department" name="edit_jobdept" >
+            <a href="/jobdept"><input type="button" value="Cancel"></a>
+        </form>
+</html>
