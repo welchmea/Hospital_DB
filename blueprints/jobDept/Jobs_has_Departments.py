@@ -1,15 +1,16 @@
 from flask import Blueprint, render_template, request, redirect
-import psycopg2
+import os
 
 jobdepartment = Blueprint('jobDept', __name__,)
 
 
-def get_connection():
-    conn = psycopg2.connect(host='ec2-3-232-218-211.compute-1.amazonaws.com', database='d6af5e5pibqrf1', user='xbeltbfqliosyk', password='294e9b67571b4e7e9ed12a10d8f0a5591750f681382b0a8193eeece39e5fde68')
-    return conn
+# def get_connection():
+#     conn = psycopg2.connect(host='ec2-3-232-218-211.compute-1.amazonaws.com', database='d6af5e5pibqrf1', user='xbeltbfqliosyk', password='294e9b67571b4e7e9ed12a10d8f0a5591750f681382b0a8193eeece39e5fde68')
+#     return conn
 
+conn = os.environ.get('DATABASE_URL')
 
-conn = get_connection()
+# conn = get_connection()
 # ----------------------------------------
 # - CRUD for Jobs has Departments------- -
 # ----------------------------------------
