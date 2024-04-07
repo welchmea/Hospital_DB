@@ -80,6 +80,7 @@ a:hover {
   padding: 4%;
   margin-left: 25%;
   width: 100%;
+  overflow-x: auto;
 }
 
 table {
