@@ -5,15 +5,15 @@ import os
 emp_job = Blueprint('job_page', __name__)
 
 
-def connect(config):
-    """ Connect to the PostgreSQL database server """
-    try:
-        # connecting to the PostgreSQL server
-        with psycopg2.connect(**config) as conn:
-            print('Connected to the PostgreSQL server.')
-            return conn
-    except (psycopg2.DatabaseError, Exception) as error:
-        print(error)
+# def connect(config):
+#     """ Connect to the PostgreSQL database server """
+#     try:
+#         # connecting to the PostgreSQL server
+#         with psycopg2.connect(**config) as conn:
+#             print('Connected to the PostgreSQL server.')
+#             return conn
+#     except (psycopg2.DatabaseError, Exception) as error:
+#         print(error)
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
