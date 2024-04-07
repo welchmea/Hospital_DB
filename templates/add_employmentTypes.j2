@@ -2,12 +2,33 @@
 <html>
 <head>
 <link rel="stylesheet" href="./static/style.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 <meta charset="UTF-8">
 <title>Add New Employment Type</title>
 </head>
-
+<header>
+    <i class="material-icons" style="font-size: 16px">account_circle</i>
+    <h1>Add Employment Type</h1>
+</header>
 <body>
- <h2>Add Employment Type</strong></h2>
+<main>
+
+<div class="index-div">
+
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+
+</div>
+<div class="table-div">
         <!-- form to add data in Employment Types-->
         <form id="addemploymentTypes" action="/add_employmentTypes" method="POST">
             <fieldset>
@@ -17,10 +38,12 @@
 
                 <label for="hoursAllow">Hours Allowed to Work:</label>
                 <input type="number" value="{{request.form[hoursAllow]}}" id="hoursAllow" name="hoursAllow" placeholder="Per Week" required>
-
-            </fieldset>
+            
             <input type="submit" value="Add Employment Type" name="add_employmentTypes" >
-            <a href="/employmentTypes"><input type="button" value="Cancel"></a>
+            <a  class="cancel-btn" href="/employmentTypes"><input type="button" value="Cancel"></a>
+            </fieldset>
         </form>
+    </div>
+    </main>
 </body>
 </html>

@@ -2,12 +2,33 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="./static/style.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 <meta charset="UTF-8">
 <title>Add New Employment Type to Departments</title>
 </head>
-
+<header>
+    <i class="material-icons" style="font-size: 16px">account_circle</i>
+    <h1>Add Employment Type to a Department</h1>
+</header>
 <body>
-<h2>Add Employment Type to a Department</h2>
+<main>
+
+<div class="index-div">
+
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+
+</div>
+<div class="table-div">
         <!-- form to add data in departments has employmentTypes-->
         <form id="add_dep_empTypes" action="/add_dep_empTypes" method="POST">
             <fieldset>
@@ -26,9 +47,10 @@
 				</select>
                 
                 <input type="submit" value="Add New Employment Type to Departments" name="add_dep_empTypes">
-                <a href="/dep_empTypes"><input type="button" value="Cancel"></a>
-
+                <a class="cancel-btn"  href="/dep_empTypes"><input type="button" value="Cancel"></a>
             </fieldset>        
         </form>
+    </div>
+    </main>
 </body>
 </html>

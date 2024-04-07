@@ -2,11 +2,22 @@
 <html>
 <head>
 <link rel="stylesheet" href="./static/style.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 <meta charset="UTF-8">
 <title>Department Employment Types</title>
 </head>
 <header>
-	  <nav>
+     <i class="material-icons" style="font-size: 16px">account_circle</i>
+    <h1>Department Employment Types</h1>
+</header>
+
+<body>
+<main>
+<div class="index-div">
+
 		<a href="/">Index</a>
 		<a href="departments">Departments</a>
 		<a href="employees">Employees</a>
@@ -15,12 +26,11 @@
         <a href="employmentTypes">Employment Types</a>
         <a href="jobdept">Department Jobs</a>
         <a href="dep_empTypes">Department Employment Types</a>
-	  </nav>
-</header>
-<body>
-<h1>Department Employment Types</h1>
+
+</div>
+
 <!-- home page Departments_has_EmploymentTypes-->
-    <h2>Department Employment Types</h2>
+     <div class="table-div">
     <table>
     <caption><strong>Current Department Employment Type Data</strong></caption>
     {% if dep_empTypes_data %}
@@ -38,11 +48,13 @@
                 <td> {{i}} </td>
                 {% endfor %}
 
-                <td><a href="delete_dep_empTypes/{{data[0]}}">Delete</a></td>
+                <td><a class="update-delete-btn" href="delete_dep_empTypes/{{data[0]}}">Delete</a></td>
             </tr>
             {% endfor %}
         {% endif %}
     </table>
-    <button><a href='add_dep_empTypes'>Add Employment Type to Department</a></strong></button>
+    <a class="update-delete-btn" href='add_dep_empTypes'>Add Employment Type to Department</a></strong>
+</div>
+</main>
 </body>
 </html>
