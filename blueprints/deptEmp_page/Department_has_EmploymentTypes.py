@@ -1,9 +1,12 @@
 from flask import Blueprint, render_template, redirect, request
 import psycopg2
-
+import os 
 
 dept_emp = Blueprint('deptEmp_page', __name__)
 
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # -------------------------------------------
 # - CRD for Department has EmploymentTypes -
 # -------------------------------------------
