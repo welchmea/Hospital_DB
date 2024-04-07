@@ -1,18 +1,29 @@
 from flask import Blueprint, render_template, request, redirect
 import os
 import psycopg2
+from config import load_config
+
+# from config import load_config
 
 jobdepartment = Blueprint('jobDept', __name__,)
 
+# def connect(config):
+#     """ Connect to the PostgreSQL database server """
+#     try:
+#         # connecting to the PostgreSQL server
+#         with psycopg2.connect(**config) as conn:
+#             print('Connected to the PostgreSQL server.')
+#             return conn
+#     except (psycopg2.DatabaseError, Exception) as error:
+#         print(error)
 
-# def get_connection():
-#     conn = psycopg2.connect(host='ec2-3-232-218-211.compute-1.amazonaws.com', database='d6af5e5pibqrf1', user='xbeltbfqliosyk', password='294e9b67571b4e7e9ed12a10d8f0a5591750f681382b0a8193eeece39e5fde68')
-#     return conn
 
 DATABASE_URL = os.environ['DATABASE_URL']
+
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-# conn = get_connection()
+# config = load_config()
+# conn = connect(config)
 # ----------------------------------------
 # - CRUD for Jobs has Departments------- -
 # ----------------------------------------

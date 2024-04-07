@@ -1,55 +1,37 @@
 <html>
-<head>
-<link rel="stylesheet" href="./static/style.css">
-<meta charset="UTF-8">
-<title>Index</title>
-</head>
-<header>
-  <h1>Hospital Database Directory</h1>
-</header>
-<body>
-  <main>
-    <div>
-      <a href="departments">Departments</a> 
-      <br> This page allows you to view hospital Departments, add a new Department, update a Department, and remove a hospital Department.
-      <br></div>
+  <head>
+    <link rel="stylesheet" href="./static/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <meta charset="UTF-8" />
+    <title>Index</title>
+  </head>
+  <header>
+    <i class="material-icons" style="font-size: 16px">account_circle</i>
+    <h1>Hospital Database Directory</h1>
+  </header>
+  <body class="index-page">
+    <img class="img" src="./static/background-hospital.jpeg" alt="hospital" />
+    <main>
+      <div class="index-div">
+        <a href="departments">Departments</a>
 
-    <div>
-      <a href="employees">Employees</a>
-      <br> This page allows you to create a new Employee, view current Employees, delete an existing Employee, and Update any existing Employee.
-      <br></div>  
-      
-    <div>
-      <a href="jobs">Jobs</a>
-      <br> This page allows you view update, delete, and add new Employee Jobs.
-      <br></div>  
+        <a href="employees">Employees</a>
 
-    <div>
-      <a href="schedules">Schedules</a>
-      <br> This page allows you to view, delete and add new Employee Schedules.
-      <br></div> 
+        <a href="jobs">Jobs</a>
 
-    <div>
-      <a href="employmentTypes">Employment Types</a> 
-      <br> This page allows you to view and delete the various Employment Types offered to Employees and add a new status if required.
-      <br></div> 
+        <a href="schedules">Schedules</a>
 
-    <div>
-      <a href="jobdept">Department Jobs</a> 
-      <br> This page is an intersection table betweeb Departments and Jobs. It allows viewing of the different Jobs currently 
-      working in all of the Departments and the option to add a new combination, delete from, as well as update.
-      <br></div> 
+        <a href="employmentTypes">Employment Types</a>
 
-    <div>
-      <a href="dep_empTypes">Department Employment Types</a> 
-      <br> This page is an intersection table between Departments and EmploymentTypes. It allows for viewing current
-      data, deletion, and adding a new EmploymentType to Departments.
+        <a href="jobdept">Department Jobs</a>
+
+        <a href="dep_empTypes">Department Employment Types</a>
       </div>
-      
-    <footer>
-        &copy Created by Meagan Welch and Hannah Patchagoolie
-    </footer>
 
-  </main>
-</body>
+    </main>
+    <footer>&copy Created by Meagan Welch and Hannah Patchagoolie</footer>
+  </body>
 </html>

@@ -2,11 +2,35 @@
 <html>
 <head>
 <link rel="stylesheet" href="/static/style.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 <meta charset="UTF-8">
 <title>Edit Department Jobs</title>
 </head>
+<header>
+    <i class="material-icons" style="font-size: 16px">account_circle</i>
+    <h1>Update</h1>
+</header>
 
 <body>
+<main>
+
+<div class="index-div">
+
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+
+</div>
+
+<div class="table-div">
         <table border="1" cellpadding="5"> 
             <caption><strong> Updating Job in Department: </strong></caption>
             <!-- Access data tuple passed from app.py -->
@@ -65,9 +89,11 @@
                     {% endif %}
                 {% endfor %} 
                 </select>
-            
-            </fieldset>
             <input type="submit" value="Update Job in Department" name="edit_jobdept" >
-            <a href="/jobdept"><input type="button" value="Cancel"></a>
+            <a class="cancel-btn" href="/jobdept"><input type="button" value="Cancel"></a>
+            </fieldset>
         </form>
+    </div>
+    </main>
+</body>
 </html>

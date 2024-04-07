@@ -2,16 +2,38 @@
 <html>
 <head>
 <link rel="stylesheet" href="./static/style.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 <meta charset="UTF-8">
 <title>Add New Job to Department</title>
 </head>
-
+<header>
+    <i class="material-icons" style="font-size: 16px">account_circle</i>
+    <h1>Add Job to Department</h1>
+</header>
 <body>
-<h2>Add Job to Department</h2>
+<main>
+
+<div class="index-div">
+
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+
+</div>
+
+<div class="table-div">
     <!-- form to add data in job department-->
     <form id="add_job_dept" action="/add_job_dept" method="POST">
+    <legend><strong>New Job Department </strong></legend>
         <fieldset>
-
             <label for="jobID">Job Name:</label>
             <select class="form-control" id="jobID" name="jobID" placeholder="" required>
 
@@ -27,9 +49,12 @@
                     <option value="{{data[1]}}">{{data[1]}}</option>
                 {% endfor %} 
             <br></select>
+        <input  type="submit" value="Add Job to Department" name="add_job_dept" >
+        <a class="cancel-btn" href="/jobdept"><input type="button" value="Cancel"></a>
         </fieldset>
-        <input type="submit" value="Add Job to Department" name="add_job_dept" >
-        <a href="/jobdept"><input type="button" value="Cancel"></a>
+
     </form>
+    </div>
+    </main>
 </body>
 </html>

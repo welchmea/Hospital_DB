@@ -4,11 +4,33 @@
 <script src="less.js" type="text/javascript"></script>
 <script src="./script.js"></script>
 <link rel="stylesheet" href="/static/style.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 <meta charset="UTF-8">
 	<title>Edit Department</title>
 </head>
-
+<header>
+    <i class="material-icons" style="font-size: 16px">account_circle</i>
+    <h1>Update</h1>
+</header>
 <body>
+<main>
+
+<div class="index-div">
+
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+
+</div>
+<div class="table-div">
     <table border="1" cellpadding="5"> 
         <caption><strong> Updating Department: </strong></caption>
         <br>
@@ -50,9 +72,13 @@
                     <label for="year">Description:</label>
                     <input type="text" value="{{departments_data[0].description}}" id="description" name="description" pattern="[A-Za-z]{0, 100}" size=100>
                 
-                </fieldset>
                 <input type="submit" value="Update Department" name="Update_Department">
-                <a href="/departments"><input type="button" value="Cancel"></a>
+                <a class="cancel-btn" href="/departments"><input type="button" value="Cancel"></a>
+                </fieldset>
+
         </form>
         {% endif %} 
+    </div>
+    </main>
+</body>
 </html>

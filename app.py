@@ -2,7 +2,7 @@
 # CS 340 flask-starter-app
 from dotenv import load_dotenv
 from flask import Flask
-# from blueprints.department_page.Departments import emp_department
+from blueprints.department_page.Departments import emp_department
 from blueprints.jobDept.Jobs_has_Departments import jobdepartment
 from blueprints.main_page.index import index_page
 # from blueprints.deptEmp_page.Department_has_EmploymentTypes import dept_emp
@@ -20,7 +20,7 @@ app.register_blueprint(jobdepartment)
 # app.register_blueprint(dept_emp)
 # app.register_blueprint(emp_schedule)
 # app.register_blueprint(emp_job)
-# app.register_blueprint(emp_department)
+app.register_blueprint(emp_department)
 # app.register_blueprint(emp_main)
 # app.register_blueprint(employType)
 
