@@ -48,8 +48,8 @@
                 {% for i in data %}
                 <td> {{i}} </td>
                 {% endfor %}
-                <td><a href='edit_department/{{data[0]}}'>Update</a></td>
-                <td><a href="delete_departments/{{data[0]}}">Delete</a></td>
+                <td><a class="update-delete-btn" href='edit_department/{{data[0]}}'>Update</a></td>
+                <td><a class="update-delete-btn" href="delete_departments/{{data[0]}}">Delete</a></td>
 
             </tr>
             {% endfor %}

@@ -7,23 +7,23 @@ from config import load_config
 
 jobdepartment = Blueprint('jobDept', __name__,)
 
-# def connect(config):
-#     """ Connect to the PostgreSQL database server """
-#     try:
-#         # connecting to the PostgreSQL server
-#         with psycopg2.connect(**config) as conn:
-#             print('Connected to the PostgreSQL server.')
-#             return conn
-#     except (psycopg2.DatabaseError, Exception) as error:
-#         print(error)
+def connect(config):
+    """ Connect to the PostgreSQL database server """
+    try:
+        # connecting to the PostgreSQL server
+        with psycopg2.connect(**config) as conn:
+            print('Connected to the PostgreSQL server.')
+            return conn
+    except (psycopg2.DatabaseError, Exception) as error:
+        print(error)
 
 
-DATABASE_URL = os.environ['DATABASE_URL']
+# DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-# config = load_config()
-# conn = connect(config)
+config = load_config()
+conn = connect(config)
 # ----------------------------------------
 # - CRUD for Jobs has Departments------- -
 # ----------------------------------------
