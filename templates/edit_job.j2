@@ -2,11 +2,33 @@
 <html>
 <head>
 <link rel="stylesheet" href="/static/style.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 <meta charset="UTF-8">
 	<title>Edit Job</title>
 </head>
-
+<header>
+    <i class="material-icons" style="font-size: 16px">account_circle</i>
+    <h1>Update</h1>
+</header>
 <body>
+<main>
+
+<div class="index-div">
+
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+
+</div>
+<div class="table-div">
     <table border="1" cellpadding="5"> 
         <caption> Updating Job: </caption>
         <!-- Access data tuple passed from app.py -->
@@ -49,10 +71,12 @@
                 <label for="year">Description:</label>
                 <input type="text" value="{{jobs_data[0].description}}"  id="description" name="description" pattern="[A-Za-z]{0, 255}" placeholder="Write a brief description of job duties." size=100 >
                 <br>
-
-            </fieldset>
             <input type="submit" value="Update Job" name="Update_Job">
-            <a href="/jobs"><input type="button" value="Cancel"></a>
-        </form>
+            <a class="cancel-btn" href="/jobs"><input type="button" value="Cancel"></a>
+            </fieldset>
 
+        </form>
+    </div>
+    </main>
+</body>
 </html>

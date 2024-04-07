@@ -2,13 +2,35 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="./static/style.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 <meta charset="UTF-8">
   <meta charset="UTF-8">
   <title>Add New Job</title>
 </head>
-
+<header>
+    <i class="material-icons" style="font-size: 16px">account_circle</i>
+    <h1>Add Job</h1>
+</header>
 <body>
-<h2>Add Job</h2>
+<main>
+
+<div class="index-div">
+
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+
+</div>
+
+<div class="table-div">
         <!-- form to add data in jobs-->
         <form id="addJob" action="/add_job" method="POST">
             <fieldset>
@@ -19,8 +41,10 @@
                 <input type="text" value="{{request.form[description]}}"id="description" name="description" pattern="[A-Za-z]{0, 255}" placeholder="Enter a brief description of job duties." size=100 ><br>
 
                 <input type="submit" value="Add Job" name="add_job">
-                <a href="/jobs"><input type="button" value="Cancel"></a>
+                <a class="cancel-btn" href="/jobs"><input type="button" value="Cancel"></a>
             </fieldset>
         </form>
+    </div>
+    </main>
 </body>
 </html>

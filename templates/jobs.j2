@@ -2,11 +2,21 @@
 <html>
 <head>
 <link rel="stylesheet" href="./static/style.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
 <meta charset="UTF-8">
 <title>Jobs</title>
 </head>
 <header>
-	  <nav>
+     <i class="material-icons" style="font-size: 16px">account_circle</i>
+    <h1> Jobs</h1>
+</header>
+<body>
+<main>
+<div class="index-div">
+
 		<a href="/">Index</a>
 		<a href="departments">Departments</a>
 		<a href="employees">Employees</a>
@@ -15,11 +25,10 @@
         <a href="employmentTypes">Employment Types</a>
         <a href="jobdept">Department Jobs</a>
         <a href="dep_empTypes">Department Employment Types</a>
-	  </nav>
-</header>
-<body>
+
+</div>
 <!-- home page Jobs-->
-    <h2>Jobs</h2>
+   <div class="table-div">
     <table>
     <caption><strong>Current Job Data</strong></caption>
     {% if jobs_data %}
@@ -38,14 +47,15 @@
                 <td> {{i}} </td>
                 {% endfor %}
 
-                <td><a href='edit_job/{{data[0]}}'>Update</a></td>
-                <td><a href="delete_jobs/{{data[0]}}">Delete</a></td>
+                <td><a  class="update-delete-btn"  href='edit_job/{{data[0]}}'>Update</a></td>
+                <td><a  class="update-delete-btn"  href="delete_jobs/{{data[0]}}">Delete</a></td>
 
             </tr>
             {% endfor %}
         {% endif %}
     </table>
-    <button><a href='add_job'>Add New Job</a></button>
-    
+    a class="update-delete-btn" href='add_job'>Add New Job</a>
+</div>
+</main> 
 </body>
 </html>
