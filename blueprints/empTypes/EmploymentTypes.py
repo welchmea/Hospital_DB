@@ -11,13 +11,6 @@ DATABASE_URL = os.environ['DATABASE_URL']
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-# def get_connection():
-#     conn = psycopg2.connect(host='ec2-3-232-218-211.compute-1.amazonaws.com', database='d6af5e5pibqrf1', user='xbeltbfqliosyk', password='294e9b67571b4e7e9ed12a10d8f0a5591750f681382b0a8193eeece39e5fde68')
-#     return conn
-
-
-# conn = get_connection()
-
 
 # route for main employmentTypes page
 @employType.route("/employmentTypes", methods=["POST", "GET"])
