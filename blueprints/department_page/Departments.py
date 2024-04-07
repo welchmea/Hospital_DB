@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, redirect
 import psycopg2
 import os
-
 from config import load_config
 
 emp_department = Blueprint('department_page', __name__)
@@ -19,11 +18,12 @@ def connect(config):
     except (psycopg2.DatabaseError, Exception) as error:
         print(error)
         
-# DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.environ['DATABASE_URL']
 
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-config = load_config()
-conn = connect(config)
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+# config = load_config()
+# conn = connect(config)
 
 # route for departments page
 @emp_department.route("/departments", methods=["POST", "GET"])
