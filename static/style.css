@@ -61,7 +61,7 @@ div {
   z-index: 10;
   border-radius: 8px;
   line-height: 50px;
-  box-shadow: 6px 6px;
+  box-shadow: 4px 4px;
   align-items: left;
   background-color: #3c4550;
   padding: 7px;
@@ -95,7 +95,7 @@ a {
   margin-left: 20px;
   border-radius: 8px;
   line-height: 50px;
-  box-shadow: 6px 6px;
+  box-shadow: 4px 4px;
   align-items: left;
   background-color: #3c4550;
   padding: 7px;
