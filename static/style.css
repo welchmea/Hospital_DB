@@ -5,6 +5,7 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: scroll;
   font-family: "Josefin Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 100;
@@ -21,6 +22,8 @@ main {
   color: white;
   justify-content: center;
   align-items: center;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 header {
@@ -51,7 +54,6 @@ div {
   margin-top: 2%;
   margin-right: 4%;
   margin-bottom: 4%;
-  overflow-y: auto;
 }
 
 .index-div {
