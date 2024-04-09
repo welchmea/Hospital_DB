@@ -1,9 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Gloock&family=Josefin+Slab:wght@600&family=Libre+Caslon+Text&family=Lora&family=Raleway:wght@200&family=Vollkorn+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Libre+Baskerville&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 html,
 body {
-  background-color: #d16f66;
-  font-family: "Raleway", sans-serif;
+  background-image: url("acton-crawford-8PB_TFEy2XQ-unsplash.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 100;
+  font-style: normal;
   color: white;
   margin: auto;
   overflow-x: auto;
@@ -12,18 +17,20 @@ body {
 main {
   display: flex;
   flex-direction: row;
-  background-color: #d16f66;
   color: white;
   justify-content: center;
   align-items: center;
 }
 
 header {
+  font-family: "Josefin Sans", sans-serif;
   background: #3c4550;
   color: white;
   padding: 2px;
   display: flex;
   flex-direction: row;
+  border-bottom: solid 1px white;
+  opacity: 70%;
 }
 
 h1 {
@@ -39,48 +46,74 @@ h1:last-of-type {
   margin-top: 2%;
 }
 
+div {
+  margin-top: 2%;
+  margin-right: 4%;
+  margin-bottom: 4%;
+}
+
 .index-div {
   display: flex;
   flex-direction: column;
+  position: absolute;
+  top:150;
+  left:40;
   z-index: 10;
-  margin-top: 3%;
-  position: fixed;
-  top: 80;
-  left: 40;
-}
-
-div {
-  display: flex;
-  flex-direction: column;
-  z-index: 10;
-  margin-top: 3%;
+  border-radius: 8px;
+  line-height: 50px;
+  box-shadow: 6px 6px;
+  align-items: left;
+  background-color: #3c4550;
+  padding: 7px;
+  border-radius: 8px;
+  opacity: 95%;
+  border: solid 1px white;
 }
 
 a {
   color: white;
-  font-weight: 600;
   text-decoration: none;
-  background-color: #3c4550;
-  border: solid 1px white;
-  line-height: 50px;
-  padding: 3%;
-  box-shadow: 6px 6px;
-  width: 100%;
-  align-items: left;
-}
-a:hover {
-  transform: scale(1.05);
-  background-color: #9297a7;
 }
 
+.directory-anchor:hover {
+  transform: scale(1.02);
+  background-color: #7b7777;
+  border-radius: 8px;
+}
+.index-anchor-div:hover {
+  transform: scale(1.02);
+  background-color: #7b7777;
+  border-radius: 8px;
+}
+.directory-div {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 150;
+  left: 40;
+  z-index: 10;
+  margin-left: 20px;
+  border-radius: 8px;
+  line-height: 50px;
+  box-shadow: 6px 6px;
+  align-items: left;
+  background-color: #3c4550;
+  padding: 7px;
+  border-radius: 8px;
+  opacity: 95%;
+  width: 40vh;
+  border: solid 1px white;
+}
 .table-div {
-  position: relative;
-  background-color: #f7ffff;
-  border: solid 1px #3c4550;
+  position: absolute;
+  top: 80;
+  left: 15;
+  background-color: #004873;
+  border: solid 1px white;
   padding: 4%;
-  margin-left: 25%;
-  width: 100%;
+  margin-left: 20%;
   overflow-x: auto;
+  overflow-y: auto;
 }
 
 table {
@@ -92,10 +125,10 @@ table {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   min-width: 30%;
   max-width: 100%;
-  border: solid 1px black;
+  border: solid 1px white;
 }
 caption {
-  color: black;
+  color: white;
   font-size: medium;
   text-align: left;
   margin-bottom: 2%;
@@ -110,7 +143,7 @@ td {
   border: solid 1px black;
 }
 thead th {
-  background: #fc958e;
+  background: #37a9e8;
 }
 tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.5);
@@ -119,11 +152,12 @@ tbody tr:hover {
 label {
   color: black;
   margin-bottom: 1%;
-  font-family: "Raleway", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: bold;
 }
 
 legend {
-  color: black;
+  color: white;
   font-size: medium;
   text-align: left;
   margin-bottom: 2%;
@@ -139,6 +173,7 @@ fieldset {
   margin-left: 2%;
   color: black;
   padding: 3rem;
+  row-gap: 8px;
 }
 
 input[type="text"],
@@ -146,23 +181,23 @@ input[type="email"],
 input[type="number"],
 input[type="datetime-local"] {
   font-family: "Raleway", sans-serif;
-  font-size: 130%;
   padding: 6px;
-  margin: 10px;
   background-color: rgba(255, 255, 255, 0.676);
   width: 60%;
+  border: solid 1px black;
+  font-family: "Josefin Sans", sans-serif;
 }
 input[type="button"],
 input[type="submit"] {
-  background: #fc958e;
-  color: black;
+  background: #9297a7;
+  color: white;
   border: transparent;
   border-radius: 5px;
-  padding: 6px;
-  width: 20%;
-  margin-top: 1%;
+  padding: 7px;
+  width: 20vh;
   font-style: italic;
   font-size: x-small;
+  border: solid 1px black;
 }
 
 option {
@@ -180,13 +215,6 @@ select {
   color: #7b7777;
 }
 
-button {
-  background: linear-gradient(#5170f7, #bcc5f3);
-  font-family: "Raleway", sans-serif;
-  padding: 10px;
-  margin: 20px 0px 0px 60px;
-}
-
 footer {
   color: white;
   font-size: 60%;
@@ -195,7 +223,7 @@ footer {
   bottom: 0;
 }
 .img {
-  opacity: 30%;
+  filter: brightness(60%);
   width: 100%;
   height: 100%;
   position: absolute;
@@ -203,26 +231,13 @@ footer {
 }
 
 .update-delete-btn {
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
   text-decoration: underline;
   font-size: x-small;
   color: black;
 }
-
-.update-delete-btn:hover {
-  transform: none;
-  background: transparent;
+.add-btn {
+  color: white;
 }
-.cancel-btn {
-  background: none;
-  box-shadow: none;
-  border: none;
-  margin-left: -22px;
-  margin-top: -20px;
-}
-.cancel-btn:hover {
-  background: none;
-  transform: none;
+.add-btn:hover {
+  text-decoration:underline;
 }
