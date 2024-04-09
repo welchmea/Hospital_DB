@@ -4,8 +4,7 @@ body {
   background-image: url("acton-crawford-8PB_TFEy2XQ-unsplash.jpg");
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-repeat: repeat;
   font-family: "Josefin Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 100;

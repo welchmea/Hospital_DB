@@ -1,12 +1,30 @@
 from flask import Blueprint, render_template, request, redirect
 import psycopg2
 import os
+from config import load_config
 
 emp_main = Blueprint('employee_page', __name__)
 
-DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# -----------------------------
+# --- CRUD for Departments ----
+# -----------------------------
+def connect(config):
+    """ Connect to the PostgreSQL database server """
+    try:
+        # connecting to the PostgreSQL server
+        with psycopg2.connect(**config) as conn:
+            print('Connected to the PostgreSQL server.')
+            return conn
+    except (psycopg2.DatabaseError, Exception) as error:
+        print(error)
+        
+# DATABASE_URL = os.environ['DATABASE_URL']
+
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+config = load_config()
+conn = connect(config)
 # ---------------------------
 # --- CRUD for Employees ----
 # ---------------------------
@@ -38,8 +56,8 @@ def delete_employees(employeeID):
     # mySQL query to delete the employee with passed id
     query = "DELETE FROM Employees WHERE employeeID = '%s';"
     cur = conn.cursor()
-    cur.execute(query, (employeeID,))
-    conn.connection.commit()
+    cur.execute(query, [employeeID])
+    conn.commit()
 
     # Redirect back to employee page
     return redirect("/employees")
