@@ -51,6 +51,7 @@ div {
   margin-top: 2%;
   margin-right: 4%;
   margin-bottom: 4%;
+  overflow-y: auto;
 }
 
 .index-div {
