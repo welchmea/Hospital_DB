@@ -4,7 +4,8 @@
 
 Parameters: 
 
-Citations: All python files and jinja templates are adapted from the CS340 flask-start-app starter code - url: https://github.com/osu-cs340-ecampus/flask-starter-app
+Citations: All python files and jinja templates are adapted from the CS340 flask-start-app starter code
+url: https://github.com/osu-cs340-ecampus/flask-starter-app
 
 Backend: Python, Flask, Blueprint, Postgres 
 Frontend: Jinja, CSS
