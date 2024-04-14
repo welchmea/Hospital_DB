@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Libre+Baskerville&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 html,
 body {
-  background-image: url("acton-crawford-8PB_TFEy2XQ-unsplash.jpg");
+  background-image: url("martha-dominguez-de-gouveia-nMyM7fxpokE-unsplash.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: repeat;
@@ -66,7 +66,7 @@ div {
   line-height: 50px;
   box-shadow: 4px 4px;
   align-items: left;
-  background-color: #3c4550;
+  background-color: #4d5967;
   padding: 7px;
   border-radius: 8px;
   opacity: 95%;
@@ -92,15 +92,15 @@ a {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 150;
-  left: 40;
+    top: 150;
+    left: 40;
   z-index: 10;
   margin-left: 20px;
   border-radius: 8px;
   line-height: 50px;
   box-shadow: 4px 4px;
   align-items: left;
-  background-color: #3c4550;
+  background-color: #4d5967;
   padding: 7px;
   border-radius: 8px;
   opacity: 95%;
