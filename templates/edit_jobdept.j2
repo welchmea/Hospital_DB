@@ -12,22 +12,23 @@
 <header>
     <i class="material-icons" style="font-size: 16px">account_circle</i>
     <h1>Update</h1>
+
+    <nav>
+
+		<a href="/">Index</a>
+		<a href="departments">Departments</a>
+		<a href="employees">Employees</a>
+		<a href="jobs">Jobs</a>
+		<a href="schedules">Schedules</a>
+        <a href="employmentTypes">Employment Types</a>
+        <a href="jobdept">Department Jobs</a>
+        <a href="dep_empTypes">Department Employment Types</a>
+
+</nav>
 </header>
 
 <body>
 <main>
-<div class="index-div">
-
-		<a class="index-anchor-div" href="/">Index</a>
-		<a class="index-anchor-div" href="departments">Departments</a>
-		<a class="index-anchor-div" href="employees">Employees</a>
-		<a class="index-anchor-div" href="jobs">Jobs</a>
-		<a class="index-anchor-div" href="schedules">Schedules</a>
-        <a class="index-anchor-div" href="employmentTypes">Employment Types</a>
-        <a class="index-anchor-div"  href="jobdept">Department Jobs</a>
-        <a class="index-anchor-div" href="dep_empTypes">Department Employment Types</a>
-
-</div>
 
 <div class="table-div">
         <table border="1" cellpadding="5"> 
@@ -89,9 +90,9 @@
                 {% endfor %} 
                 </select>
             <input type="submit" value="Update Job in Department" name="edit_jobdept" >
-            <a class="cancel-btn" href="/jobdept"><input type="button" value="Cancel"></a>
             </fieldset>
         </form>
+                    <a class="add-btn" href="/jobdept">Cancel</a>
     </div>
     </main>
 </body>

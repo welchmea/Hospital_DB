@@ -3,7 +3,6 @@ import os
 import psycopg2
 from config import load_config
 
-# from config import load_config
 
 jobdepartment = Blueprint('jobDept', __name__,)
 
@@ -18,12 +17,12 @@ def connect(config):
         print(error)
 
 
-DATABASE_URL = os.environ['DATABASE_URL']
+# DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-# config = load_config()
-# conn = connect(config)
+config = load_config()
+conn = connect(config)
 # ----------------------------------------
 # - CRUD for Jobs has Departments------- -
 # ----------------------------------------
