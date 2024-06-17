@@ -28,7 +28,7 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # -----------------------------
 
 
-jobName, description = None
+jobName, description = None,None
 
 
 # route for jobs page

@@ -28,7 +28,7 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # ----------------------------------------
 
 
-departmentID, jobID, jobdept_data = None
+departmentID, jobID, jobdept_data = None,None,None
 
 
 # Route for Job Departments page
