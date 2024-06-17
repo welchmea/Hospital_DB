@@ -98,7 +98,7 @@ def edit_job(jobid):
 @emp_job .route("/add_job", methods=["POST", "GET"])
 def add_job():
 
-    jobs_data, jobname, description = None
+    jobs_data, jobname, description = None, None, None
     # button click will render a new template/page
     if request.method == "GET":
         query = "SELECT * FROM Jobs"

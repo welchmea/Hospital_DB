@@ -29,10 +29,9 @@ def employment_types():
         return render_template("employmentTypes.j2", employmenttypes_data=employmenttypes_data)
     
 # route for delete functionality, deleting an employment type
-@employType.route("/delete_employmentTypes/<string:typeName>")
-def delete_employmentTypes(typename):
+@employType.route("/delete_employmenttypes/<string:typeName>")
+def delete_employmenttypes(typename):
 
-    typename = None
     # mySQL query to delete the selection with the passed id
     query = "DELETE FROM EmploymentTypes WHERE typeName = %s;"
     cur = conn.cursor()
@@ -45,7 +44,7 @@ def delete_employmentTypes(typename):
 @employType.route("/add_employment_types", methods=["POST", "GET"])
 def add_employment_types():
 
-    employment_types_data, typename, hoursallow = None, None, None
+    employment_types_data = None
     if request.method == "GET": 
         query = "SELECT * FROM EmploymentTypes"
         cur = conn.cursor()

@@ -34,7 +34,6 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 @emp_main.route("/employees", methods=["POST", "GET"])
 def employees():
     
-    employees_data=None
     # Grabs employees data from mySQl and call template to display
     if request.method == "GET":
         # mySQL query to grab all from Departments
@@ -70,7 +69,7 @@ def delete_employees(employeeid):
 @emp_main.route("/edit_employee/<int:employeeid>", methods=["POST", "GET"])
 def edit_employee(employeeid):
     
-    employeeid, name, email, phonenum, typename, jobid, departmentid, employees_data = None, None, None, None, None, None, None, None
+    name, email, phonenum, typename, jobid, departmentid, employees_data = None, None, None, None, None, None, None
     if request.method == "GET":
         # mySQL query to grab the info of the Employee with passed id
         query = "SELECT * FROM Employees WHERE employeeid = %s" % employeeid
@@ -147,7 +146,7 @@ def edit_employee(employeeid):
 @emp_main.route("/add_employee", methods=["POST", "GET"])
 def add_employee():
     
-    employeeid, name, email, phonenum, typename, jobid, departmentid, employees_data = None, None, None, None, None, None, None, None
+    name, email, phonenum, typename, jobid, departmentid, employees_data = None, None, None, None, None, None, None
     # Inserts data about a new employee into the Employees entity
     if request.method == "POST":
         if request.form.get("add_employee"):
