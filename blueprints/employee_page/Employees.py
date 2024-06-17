@@ -29,7 +29,6 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # --- CRUD for Employees ----
 # ---------------------------
 
-name, typeName, departmentID, jobID, email, phoneNum = None,None,None,None,None,None
 
 # Route for employees page
 @emp_main.route("/employees", methods=["POST", "GET"])

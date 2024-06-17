@@ -26,9 +26,6 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # conn = connect(config)
 
 
-depName, description, departments_data = None,None,None
-
-
 # route for departments page
 @emp_department.route("/departments", methods=["POST", "GET"])
 def departments():
@@ -61,6 +58,9 @@ def delete_departments(departmentID):
 # pass the 'id' value of that department on button click (see HTML) via the route
 @emp_department.route("/edit_department/<int:departmentID>", methods=["POST", "GET"])
 def edit_department(departmentID):
+    
+    depName, description, departments_data = None, None, None
+    
     if request.method == "GET":
         # mySQL query to grab the info of the Department with our passed id
         query = "SELECT * FROM Departments WHERE departmentID = %s" % departmentID
@@ -98,6 +98,7 @@ def edit_department(departmentID):
 @emp_department.route("/add_department", methods=["POST", "GET"])
 def add_department():
 
+    depName, description, departments_data = None,None,None
     # button click will render new page 
     if request.method == "GET":
         query = "SELECT * FROM Departments"
