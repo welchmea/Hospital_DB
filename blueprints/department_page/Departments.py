@@ -34,7 +34,7 @@ def departments():
     # Grab department data from mySQl and call template to display
     if request.method == "GET":
         # mySQL query to grab all from Departments
-        query = "SELECT Departments.departmentID, Departments.depName,\
+        query = "SELECT Departments.departmentid, Departments.depname,\
             Departments.description FROM Departments;"
         cur = conn.cursor()
         cur.execute(query)
@@ -44,13 +44,13 @@ def departments():
 
 
 # route for delete functionality, deleting a department by id
-@emp_department.route("/delete_departments/<int:departmentID>")
-def delete_departments(department_id):
+@emp_department.route("/delete_departments/<int:departmentid>")
+def delete_departments(departmentid):
 
     # mySQL query to delete the department with our passed id
-    query = "DELETE FROM Departments WHERE departmentID = %s;"
+    query = "DELETE FROM Departments WHERE departmentid = %s;"
     cur = conn.cursor()
-    cur.execute(query, [department_id])
+    cur.execute(query, [departmentid])
     conn.commit()
 
     # redirect back to department page
@@ -58,14 +58,14 @@ def delete_departments(department_id):
 
 # route for edit functionality, updating the attributes of a department
 # pass the 'id' value of that department on button click (see HTML) via the route
-@emp_department.route("/edit_department/<int:department_id>", methods=["POST", "GET"])
-def edit_department(department_id):
+@emp_department.route("/edit_department/<int:departmentid>", methods=["POST", "GET"])
+def edit_department(departmentid):
     
-    dep_name, description, departments_data = None, None, None
+    depname, description, departments_data = None, None, None
     
     if request.method == "GET":
         # mySQL query to grab the info of the Department with our passed id
-        query = "SELECT * FROM Departments WHERE department_id = %s" % department_id
+        query = "SELECT * FROM Departments WHERE department_id = %s" % departmentid
         cur = conn.cursor()
         cur.execute(query)
         departments_data = cur.fetchall()
@@ -76,21 +76,21 @@ def edit_department(department_id):
     if request.method == "POST":
         if request.form.get('Update_Department'):
             # grab user form inputs
-            department_id = department_id
-            dep_name = request.form["dep_name"]
+            departmentid = departmentid
+            depname = request.form["depname"]
             description = request.form["description"]
         # account for null description
         if description == "":
-            query = "UPDATE Departments SET dep_name = %s WHERE Departments.department_id = %s"
+            query = "UPDATE Departments SET depname = %s WHERE Departments.departmentid = %s"
             cur = conn.cursor()
-            cur.execute(query, (dep_name, department_id))
+            cur.execute(query, (depname, departmentid))
             conn.commit()
 
         # no null inputs
         else:
-            query = "UPDATE Departments SET dep_name = %s, description = %s WHERE Departments.department_id = %s"
+            query = "UPDATE Departments SET depname = %s, description = %s WHERE Departments.departmentid = %s"
             cur = conn.cursor()
-            cur.execute(query, [dep_name, description, department_id])
+            cur.execute(query, [depname, description, departmentid])
             conn.commit()
 
         # redirect back to main department page
@@ -100,7 +100,7 @@ def edit_department(department_id):
 @emp_department.route("/add_department", methods=["POST", "GET"])
 def add_department():
 
-    dep_name, description, departments_data = None,None,None
+    depname, description, departments_data = None,None,None
     # button click will render new page 
     if request.method == "GET":
         query = "SELECT * FROM Departments"
@@ -112,21 +112,21 @@ def add_department():
     if request.method == "POST":
         if request.form.get("add_department"):
         # grab user form inputs
-            dep_name = request.form["dep_name"]
+            depname = request.form["depname"]
             description = request.form["description"]
 
         # account for null description
         if description == "":
-            query = "INSERT INTO Departments (dep_name) VALUES(%s);"
+            query = "INSERT INTO Departments (depname) VALUES(%s);"
             cur = conn.cursor()
-            cur.execute(query, (dep_name,))
+            cur.execute(query, (depname,))
             conn.commit()
 
         # no null inputs
         else:
-            query = "INSERT INTO Departments (dep_name, description) VALUES(%s, %s);"
+            query = "INSERT INTO Departments (depname, description) VALUES(%s, %s);"
             cur = conn.cursor()
-            cur.execute(query, (dep_name, description))
+            cur.execute(query, (depname, description))
             conn.commit()
 
         # redirect back to main page after we execute the add query

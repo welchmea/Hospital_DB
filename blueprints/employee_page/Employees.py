@@ -33,6 +33,8 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # Route for employees page
 @emp_main.route("/employees", methods=["POST", "GET"])
 def employees():
+    
+    employees_data=None
     # Grabs employees data from mySQl and call template to display
     if request.method == "GET":
         # mySQL query to grab all from Departments
@@ -65,49 +67,51 @@ def delete_employees(employeeID):
 
 # Route for edit functionality, updating the attributes of an employee
 # Passes the 'employeeID' value of selected department on button click via the route
-@emp_main.route("/edit_employee/<int:employeeID>", methods=["POST", "GET"])
-def edit_employee(employeeID):
+@emp_main.route("/edit_employee/<int:employeeid>", methods=["POST", "GET"])
+def edit_employee(employeeid):
+    
+    employeeid, name, email, phonenum, typename, jobid, departmentid, employees_data = None, None, None, None, None, None, None, None
     if request.method == "GET":
         # mySQL query to grab the info of the Employee with passed id
-        query = "SELECT * FROM Employees WHERE employeeID = %s" % employeeID
+        query = "SELECT * FROM Employees WHERE employeeid = %s" % employeeid
         cur = conn.cursor()
         cur.execute(query)
         employees_data = cur.fetchall()
-        query2 = "SELECT typeName FROM EmploymentTypes"
+        query2 = "SELECT typename FROM EmploymentTypes"
         cur = conn.cursor()
         cur.execute(query2)
-        empTypeFK = cur.fetchall()
-        query3 = "SELECT jobID, jobName FROM Jobs;"
+        emptypefk = cur.fetchall()
+        query3 = "SELECT jobID, jobname FROM Jobs;"
         cur = conn.cursor()
         cur.execute(query3)
-        jobIDFK = cur.fetchall()
-        query4 = "SELECT departmentID, depName FROM Departments"
+        jobidfk = cur.fetchall()
+        query4 = "SELECT departmentID, depname FROM Departments"
         cur = conn.cursor()
         cur.execute(query4)
-        departmentFK = cur.fetchall() 
+        departmentfk = cur.fetchall() 
 
         # Render edit_employee page passing query data to the edit_employee template
         return render_template("edit_employee.j2", employees_data=employees_data,
-            empTypeFK=empTypeFK, jobIDFK=jobIDFK, departmentFK=departmentFK)
+            emptypefk=emptypefk, jobidfk=jobidfk, departmentfk=departmentfk)
 
     # Conditional to alter table contents in database
     if request.method == "POST":
         # grab user form inputs
         if request.form.get('edit_employee'):
-            employeeID = request.form["employeeID"]
+            employeeid = request.form["employeeID"]
             name = request.form["name"]
             email = request.form["email"]
-            phoneNum = request.form["phoneNum"]
-            typeName = request.form["typeName"]
-            jobID = request.form["jobID"]
-            departmentID = request.form["departmentID"] 
+            phonenum = request.form["phoneNum"]
+            typename = request.form["typeName"]
+            jobid = request.form["jobID"]
+            departmentid = request.form["departmentID"] 
 
         # Account for null email and departmentID
-        if departmentID == '0' and email == "":
+        if departmentid == '0' and email == "":
             query = "UPDATE Employees SET name = %s, email = NULL, phoneNum = %s, typeName = %s, \
             jobID = %s, departmentID = NULL WHERE employeeID = %s"
             cur = conn.cursor()
-            cur.execute(query, (name, phoneNum, typeName, jobID, employeeID))
+            cur.execute(query, (name, phonenum, typename, jobid, employeeid))
             conn.commit()
             return redirect("/employees")
 
@@ -116,16 +120,16 @@ def edit_employee(employeeID):
             query = "UPDATE Employees SET name = %s, email = NULL, phoneNum = %s, typeName = %s, \
             jobID = %s, departmentID = %s WHERE employeeID = %s"
             cur = conn.cursor()
-            cur.execute(query, (name, phoneNum, typeName, jobID, departmentID, employeeID))
+            cur.execute(query, (name, phonenum, typename, jobid, departmentid, employeeid))
             conn.commit()
             return redirect("/employees")
 
         # Account for null departmentID
-        if departmentID == '0':
+        if departmentid == '0':
             query = "UPDATE Employees SET name = %s, email = %s, phoneNum = %s, typeName = %s, \
             jobID = %s, departmentID = NULL WHERE employeeID = %s"
             cur = conn.cursor()
-            cur.execute(query, (name, email, phoneNum, typeName, jobID, employeeID))
+            cur.execute(query, (name, email, phonenum, typename, jobid, employeeid))
             conn.commit()
             return redirect("/employees")
 
@@ -134,7 +138,7 @@ def edit_employee(employeeID):
             query = "UPDATE Employees SET name = %s, email = %s, phoneNum = %s, typeName = %s, \
             jobID = %s, departmentID = %s WHERE employeeID = %s"
             cur = conn.cursor()
-            cur.execute(query, (name, email, phoneNum, typeName, jobID, departmentID, employeeID))
+            cur.execute(query, (name, email, phonenum, typename, jobid, departmentid, employeeid))
             conn.commit()
             return redirect("/employees")
 
