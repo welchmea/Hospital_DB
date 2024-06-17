@@ -16,7 +16,6 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 @employType.route("/employment_types", methods=["POST", "GET"])
 def employment_types():
 
-    employmenttypes_data = None
     # Grab employment type data from mySQl and call template to display
     if request.method == "GET":
         # mySQL query to grab all from EmploymentTypes
@@ -44,7 +43,6 @@ def delete_employmenttypes(typename):
 @employType.route("/add_employment_types", methods=["POST", "GET"])
 def add_employment_types():
 
-    employment_types_data = None
     if request.method == "GET": 
         query = "SELECT * FROM EmploymentTypes"
         cur = conn.cursor()
