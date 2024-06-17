@@ -58,8 +58,7 @@ def delete_schedules(scheduleid):
 @emp_schedule.route("/add_schedule", methods=["POST", "GET"])
 def add_schedule():
     
-    starttime, typename, departmentid, endtime, scheduletype, employeeid, shift, schedules_data = None,None,None,None,
-    None,None,None,None
+    starttime, typename, departmentid, endtime, scheduletype, employeeid, shift, schedules_data = None,None,None,None,None,None,None,None
     
     # Inserts data about a new schedule into the schedules entity
     if request.method == "POST":

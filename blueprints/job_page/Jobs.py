@@ -28,15 +28,11 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # -----------------------------
 
 
-jobName, description = None,None
-
-
 # route for jobs page
 @emp_job .route("/jobs", methods=["POST", "GET"])
 def jobs():
     # Grab jobs data from mySQl and call template to display
     if request.method == "GET":
-
         # mySQL query to grab all from Jobs
         query = "SELECT Jobs.jobID, Jobs.jobName, Jobs.description FROM Jobs;"
         cur = conn.cursor()
@@ -46,12 +42,12 @@ def jobs():
     
 # route for delete functionality, deleting a job by id
 @emp_job .route("/delete_jobs/<int:jobID>")
-def delete_jobs(jobID):
+def delete_jobs(jobid):
 
     # mySQL query to delete the job with our passed id
     query = "DELETE FROM Jobs WHERE jobID = '%s';"
     cur = conn.cursor()
-    cur.execute(query, (jobID,))
+    cur.execute(query, (jobid,))
     conn.commit()
 
     # redirect back to job page
@@ -59,10 +55,13 @@ def delete_jobs(jobID):
 
 # the pass the 'id' value of the job on button click (see HTML) via the route
 @emp_job .route("/edit_job/<int:jobID>", methods=["POST", "GET"])
-def edit_job(jobID):
+def edit_job(jobid):
+    
+    jobname, description = None, None
+    
     if request.method == "GET":
         # mySQL query to grab the info of the Job with our passed id
-        query = "SELECT * FROM Jobs WHERE jobID = %s" % jobID
+        query = "SELECT * FROM Jobs WHERE jobID = %s" % jobid
         cur = conn.cursor()
         cur.execute(query)
         jobs_data = cur.fetchall()
@@ -74,22 +73,22 @@ def edit_job(jobID):
 
         # grab user form inputs
         if request.form.get('Update_Job'):
-            jobID = request.form["jobID"]
-            jobName = request.form["jobName"]
+            jobid = request.form["jobID"]
+            jobname = request.form["jobName"]
             description = request.form["description"]
 
         # account for null description
         if description == "":
             query = "UPDATE Jobs SET jobName = %s WHERE Jobs.jobID = %s"
             cur = conn.cursor()
-            cur.execute(query, (jobName, jobID))
+            cur.execute(query, (jobname, jobid))
             conn.commit()
 
         # no null inputs
         else:
             query = "UPDATE Jobs SET jobName = %s, description = %s WHERE Jobs.jobID = %s"
             cur = conn.cursor()
-            cur.execute(query, (jobName, description, jobID))
+            cur.execute(query, (jobname, description, jobid))
             conn.commit()
 
         # redirect back to jobs page after we execute the update query
@@ -111,21 +110,21 @@ def add_job():
     if request.method == "POST":
 
         if request.form.get("add_job"):
-            jobName = request.form["jobName"]
+            jobname = request.form["jobName"]
             description = request.form["description"]
 
         # account for null description
         if description == "":
             query = "INSERT INTO Jobs (jobName) VALUES( %s);"
             cur = conn.cursor()
-            cur.execute(query, jobName)
+            cur.execute(query, jobname)
             conn.commit()
 
         # no null inputs
         else:
             query = "INSERT INTO Jobs (jobName, description) VALUES(%s, %s);"
             cur = conn.cursor()
-            cur.execute(query, (jobName, description))
+            cur.execute(query, (jobname, description))
             conn.commit()
 
         # redirect back to jobs page after we execute the add query

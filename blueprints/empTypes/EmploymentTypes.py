@@ -13,9 +13,10 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
 # route for main employmentTypes page
-@employType.route("/employmentTypes", methods=["POST", "GET"])
-def employmentTypes():
+@employType.route("/employment_types", methods=["POST", "GET"])
+def employment_types():
 
+    employment_types = None
     # Grab employment type data from mySQl and call template to display
     if request.method == "GET":
         # mySQL query to grab all from EmploymentTypes
@@ -29,37 +30,39 @@ def employmentTypes():
     
 # route for delete functionality, deleting an employment type
 @employType.route("/delete_employmentTypes/<string:typeName>")
-def delete_employmentTypes(typeName):
+def delete_employmentTypes(typename):
 
+    typename = None
     # mySQL query to delete the selection with the passed id
     query = "DELETE FROM EmploymentTypes WHERE typeName = %s;"
     cur = conn.cursor()
-    cur.execute(query, (typeName,))
+    cur.execute(query, (typename,))
     conn.commit()
 
     return redirect("/employmentTypes")
 
 # add a new employmentType to the DB
-@employType.route("/add_employmentTypes", methods=["POST", "GET"])
-def add_employmentTypes():
+@employType.route("/add_employment_types", methods=["POST", "GET"])
+def add_employment_types():
 
-    if request.method == "GET":
+    employment_types_data, typename, hoursallow = None, None
+    if request.method == "GET": 
         query = "SELECT * FROM EmploymentTypes"
         cur = conn.cursor()
         cur.execute(query)
-        employmentTypes_data = cur.fetchall()
-        return render_template('add_employmentTypes.j2', employmentTypes_data=employmentTypes_data)
+        employment_types_data = cur.fetchall()
+        return render_template('add_employmentTypes.j2', employment_types_data=employment_types_data)
     
     if request.method == "POST":
         # grab user inputs
         if request.form.get("add_employmentTypes"):
-            typeName = request.form["typeName"]
-            hoursAllow = request.form["hoursAllow"]
+            typename = request.form["typeName"]
+            hoursallow = request.form["hoursAllow"]
 
             # no null values 
             query = "INSERT INTO EmploymentTypes (typeName, hoursAllow) VALUES(%s, %s);"
             cur = conn.cursor()
-            cur.execute(query, (typeName, hoursAllow))
+            cur.execute(query, (typename, hoursallow))
             conn.commit()
 
         # redirect back to jobs page after we execute the add query
