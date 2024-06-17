@@ -28,6 +28,9 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # ----------------------------------------
 
 
+departmentID, jobID, jobdept_data = None
+
+
 # Route for Job Departments page
 @jobdepartment.route("/jobdept", methods=["GET"])
 def jobdept():

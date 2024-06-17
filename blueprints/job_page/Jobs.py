@@ -27,6 +27,10 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # --- CRUD for Jobs ----
 # -----------------------------
 
+
+jobName, description = None
+
+
 # route for jobs page
 @emp_job .route("/jobs", methods=["POST", "GET"])
 def jobs():

@@ -12,6 +12,8 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # --- CRUD for Schedules ----
 # ---------------------------
 
+startTime, typeName, departmentID, endTime, scheduleType, employeeID, shift, schedules_data = None
+
 
 # Route for schedules page
 @emp_schedule.route("/schedules", methods=["GET"])

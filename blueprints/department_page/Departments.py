@@ -25,6 +25,10 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # config = load_config()
 # conn = connect(config)
 
+
+depName, description, departments_data = None
+
+
 # route for departments page
 @emp_department.route("/departments", methods=["POST", "GET"])
 def departments():
