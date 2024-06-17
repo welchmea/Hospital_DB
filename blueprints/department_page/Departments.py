@@ -26,7 +26,7 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # conn = connect(config)
 
 
-depName, description, departments_data = None
+depName, description, departments_data = None,None,None
 
 
 # route for departments page

@@ -12,7 +12,7 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # -------------------------------------------
 
 
-departmentID, typeName, dep_empTypes_data = None
+departmentID, typeName, dep_empTypes_data = None,None,None
 
 
 @dept_emp.route("/dep_empTypes", methods=["GET"])
