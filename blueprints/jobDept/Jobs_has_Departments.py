@@ -1,28 +1,28 @@
 from flask import Blueprint, render_template, request, redirect
-import os
+# import os
 import psycopg2
-# from config import load_config
+from ...config import load_config
 
 
 jobdepartment = Blueprint('jobDept', __name__,)
 
-# def connect(config):
-#     """ Connect to the PostgreSQL database server """
-#     try:
-#         # connecting to the PostgreSQL server
-#         with psycopg2.connect(**config) as conn:
-#             print('Connected to the PostgreSQL server.')
-#             return conn
-#     except (psycopg2.DatabaseError, Exception) as error:
-#         print(error)
+def connect(config):
+    """ Connect to the PostgreSQL database server """
+    try:
+        # connecting to the PostgreSQL server
+        with psycopg2.connect(**config) as conn:
+            print('Connected to the PostgreSQL server.')
+            return conn
+    except (psycopg2.DatabaseError, Exception) as error:
+        print(error)
 
 
-DATABASE_URL = os.environ['DATABASE_URL']
+# DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-# config = load_config()
-# conn = connect(config)
+config = load_config()
+conn = connect(config)
 # ----------------------------------------
 # - CRUD for Jobs has Departments------- -
 # ----------------------------------------
@@ -116,19 +116,19 @@ def add_job_dept():
         return render_template("add_job_dept.j2", jobdep_data=jobdept_data, jobidfk=jobidfk, departmentfk=departmentfk)
 
 
-@jobdepartment.route("/edit_jobdept/<int:jobDeptID>", methods=["POST", "GET"])
+@jobdepartment.route("/edit_jobdept/<int:jobdeptid>", methods=["POST", "GET"])
 def edit_jobdept(jobdeptid):
     if request.method == "GET":
         # mySQL query to grab the info of the Employee with passed id
-        query = "SELECT * FROM Jobs_has_Departments WHERE jobDeptID = %s" % jobdeptid
+        query = "SELECT * FROM Jobs_has_Departments WHERE jobdeptid = %s" % jobdeptid
         cur = conn.cursor()
         cur.execute(query)
         jobdept_data = cur.fetchall()
-        query3 = "SELECT jobID, jobName FROM Jobs;"
+        query3 = "SELECT jobid, jobname FROM Jobs;"
         cur = conn.cursor()
         cur.execute(query3)
         jobidfk = cur.fetchall()
-        query4 = "SELECT departmentID, depName FROM Departments"
+        query4 = "SELECT departmentid, depname FROM Departments"
         cur = conn.cursor()
         cur.execute(query4)
         departmentfk = cur.fetchall() 
@@ -141,12 +141,12 @@ def edit_jobdept(jobdeptid):
     if request.method == "POST":
         # grab user form inputs
         if request.form.get('edit_jobdept'):
-            jobdeptid = request.form['jobDeptID']
-            jobid = request.form["jobID"]
-            departmentid = request.form["departmentID"] 
+            jobdeptid = request.form['jobdeptid']
+            jobid = request.form["jobid"]
+            departmentid = request.form["departmentid"] 
 
             # No null inputs
-            query = "UPDATE Jobs_has_Departments SET jobID = %s, departmentID = %s WHERE jobDeptID = %s"
+            query = "UPDATE Jobs_has_Departments SET jobid = %s, departmentid = %s WHERE jobdeptid = %s"
             cur = conn.cursor()
             cur.execute(query, (jobid, departmentid, jobdeptid))
             conn.commit()

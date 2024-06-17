@@ -1,18 +1,30 @@
 from flask import Blueprint, render_template, redirect, request
 import psycopg2
 import os 
+from ...config import load_config
 
 dept_emp = Blueprint('deptEmp_page', __name__)
 
-DATABASE_URL = os.environ['DATABASE_URL']
+def connect(config):
+    """ Connect to the PostgreSQL database server """
+    try:
+        # connecting to the PostgreSQL server
+        with psycopg2.connect(**config) as conn:
+            print('Connected to the PostgreSQL server.')
+            return conn
+    except (psycopg2.DatabaseError, Exception) as error:
+        print(error)
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+# DATABASE_URL = os.environ['DATABASE_URL']
+
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+config = load_config()
+conn = connect(config)
 # -------------------------------------------
 # - CRD for Department has EmploymentTypes -
 # -------------------------------------------
-
-
-departmentID, typeName, dep_empTypes_data = None,None,None
 
 
 @dept_emp.route("/dep_emptypes", methods=["GET"])
@@ -34,7 +46,7 @@ def dep_emptypes():
         cur.execute(query)
         dep_emptypes_data = cur.fetchall()
 
-    return render_template("dep_empTypes.j2", dep_emptypes_data=dep_emptypes_data)
+    return render_template("dep_emptypes.j2", dep_emptypes_data=dep_emptypes_data)
 
 
 # Route for delete functionality, deleting selected Department EmploymentType by empDeptID

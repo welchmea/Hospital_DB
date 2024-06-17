@@ -61,6 +61,11 @@ color: #dc2235;
   place-content: center;
 }
 
+.header-anchor-tag {
+  text-decoration: none;
+  color: black;
+}
+
 
 /* TABLE Styling  */
 

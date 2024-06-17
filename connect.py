@@ -1,5 +1,5 @@
 import psycopg2
-from Hospital_DB.config import load_config
+from config import load_config
 
 def connect(configure):
     """ Connect to the PostgreSQL database server """

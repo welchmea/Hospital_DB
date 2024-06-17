@@ -1,28 +1,4 @@
-<!-- All templates modified from CS340 flask-starter-app code -->
-<html>
-<head>
-<link rel="stylesheet" href="./static/style.css">
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-<meta charset="UTF-8">
-<title>Employment Types</title>
-</head>
-<header>
-     <i class="material-icons" style="font-size: 16px">account_circle</i>
-    <h1>Employment Types</h1>
-        <nav class="">
-        <a class="" href="/">Index</a>
-      <a class="" href="departments">Departments</a>
-      <a class="" href="employees">Employees</a>
-      <a class="" href="jobs">Jobs</a>
-      <a class="" href="schedules">Schedules</a>
-      <a class="" href="employmentTypes">Employment Types</a>
-      <a class="" href="jobdept">Department Jobs</a>
-      <a class="" href="dep_empTypes">Department Employment Types</a>
-    </nav>
-</header>
+{% include "index.html" %}
 
 <body>
 <main>
@@ -30,7 +6,7 @@
  <div class="table-div">
     <table>
     <caption><strong>Current Employment Type Data</strong></caption>
-    {% if employmentTypes_data %}
+    {% if employmenttypes_data %}
         <thead>
             <tr>
                <th>Employment Status</th>
@@ -38,7 +14,7 @@
                 <th></th>
             </tr>
         <tbody>
-            {% for data in employmentTypes_data %}
+            {% for data in employmenttypes_data %}
             <tr>
                 {% for i in data %}
                 <td> {{i}} </td>
