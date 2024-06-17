@@ -54,11 +54,11 @@ def employees():
 
 # Route for delete functionality, deleting selected employee by employeeID
 @emp_main.route("/delete_employees/<int:employeeID>")
-def delete_employees(employeeID):
+def delete_employees(employeeid):
     # mySQL query to delete the employee with passed id
     query = "DELETE FROM Employees WHERE employeeID = '%s';"
     cur = conn.cursor()
-    cur.execute(query, [employeeID])
+    cur.execute(query, [employeeid])
     conn.commit()
 
     # Redirect back to employee page
@@ -146,25 +146,27 @@ def edit_employee(employeeid):
 # Route for add functionality, adds new employee data
 @emp_main.route("/add_employee", methods=["POST", "GET"])
 def add_employee():
+    
+    employeeid, name, email, phonenum, typename, jobid, departmentid, employees_data = None, None, None, None, None, None, None, None
     # Inserts data about a new employee into the Employees entity
     if request.method == "POST":
         if request.form.get("add_employee"):
             # Grab user form inputs
             name = request.form["name"]
             email = request.form["email"]
-            phoneNum = request.form["phoneNum"]
-            typeName = request.form["typeName"]
-            jobID = request.form["jobID"]
-            departmentID = request.form["departmentID"] 
+            phonenum = request.form["phoneNum"]
+            typename = request.form["typeName"]
+            jobid = request.form["jobID"]
+            departmentid = request.form["departmentID"] 
 
         # Account for null email and departmentID
-        if departmentID is None and email is None:
+        if departmentid is None and email is None:
             query = "INSERT INTO Employees (name, phoneNum, typeName, jobID ) \
             VALUES (%s, %s,\
                 (SELECT typeName FROM EmploymentTypes WHERE typeName=%s),\
                 (SELECT jobID FROM Jobs WHERE jobName = %s));"
             cur = conn.cursor()
-            cur.execute(query, (name, phoneNum, typeName, jobID))
+            cur.execute(query, (name, phonenum, typename, jobid))
             conn.commit()
 
         # Account for null email
@@ -175,17 +177,17 @@ def add_employee():
                 (SELECT jobID FROM Jobs WHERE jobName = %s),\
                 (SELECT departmentID FROM Departments WHERE depName = %s));"
             cur = conn.cursor()
-            cur.execute(query, (name, phoneNum, typeName, jobID, departmentID))
+            cur.execute(query, (name, phonenum, typename, jobid, departmentid))
             conn.commit()
 
         # Account for null departmentID
-        elif departmentID is None:
+        elif departmentid is None:
             query = "INSERT INTO Employees (name, email, phoneNum, typeName, jobID) \
             VALUES ( %s, %s, %s, \
                 (SELECT typeName FROM EmploymentTypes WHERE typeName=%s),\
                 (SELECT jobID FROM Jobs WHERE jobName = %s));"
             cur = conn.cursor()
-            cur.execute(query, (name, email, phoneNum, typeName, jobID))
+            cur.execute(query, (name, email, phonenum, typename, jobid))
             conn.commit()
 
         # No null inputs
@@ -196,7 +198,7 @@ def add_employee():
                 (SELECT jobID FROM Jobs WHERE jobName = %s),\
                 (SELECT departmentID FROM Departments WHERE depName = %s));"
             cur = conn.cursor()
-            cur.execute(query, (name, email, phoneNum, typeName, jobID, departmentID))
+            cur.execute(query, (name, email, phonenum, typename, jobid, departmentid))
             conn.commit()
 
         # Redirect back to departments page after executing the add query
@@ -211,16 +213,16 @@ def add_employee():
         query2 = "SELECT typeName FROM EmploymentTypes"
         cur = conn.cursor()
         cur.execute(query2)
-        empTypeFK = cur.fetchall()
+        emptypefk = cur.fetchall()
         query3 = "SELECT jobID, jobName FROM Jobs;"
         cur = conn.cursor()
         cur.execute(query3)
-        jobIDFK = cur.fetchall()
+        jobidfk = cur.fetchall()
         query4 = "SELECT departmentID, depName FROM Departments"
         cur = conn.cursor()
         cur.execute(query4)
-        departmentFK = cur.fetchall() 
+        departmentfk = cur.fetchall() 
         return render_template("add_employee.j2", 
                                employees_data=employees_data,
-                               empTypeFK=empTypeFK, jobIDFK=jobIDFK, 
-                               departmentFK=departmentFK)
+                               emptypefk=emptypefk, jobidfk=jobidfk, 
+                               departmentfk=departmentfk)
