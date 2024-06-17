@@ -27,6 +27,7 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # - CRUD for Jobs has Departments------- -
 # ----------------------------------------
 
+
 # Route for Job Departments page
 @jobdepartment.route("/jobdept", methods=["GET"])
 def jobdept():
@@ -44,6 +45,7 @@ def jobdept():
 
     return render_template("jobdept.j2", jobdept_data=jobdept_data)
 
+
 # Route for delete functionality, deleting selected Job Departments by jobDeptID
 @jobdepartment.route("/delete_job_dept/<int:jobDeptID>")
 def delete_job_dept(jobDeptID):
@@ -56,29 +58,30 @@ def delete_job_dept(jobDeptID):
     # Redirect back to Job Departments page
     return redirect("/jobdept")
 
+
 @jobdepartment.route("/add_job_dept", methods=["POST", "GET"])
 def add_job_dept():
     # Inserts data about a new job department into the job departments entity
     if request.method == "POST":
         if request.form.get("add_job_dept"):
-        # Grab user form inputs
+            # Grab user form inputs
             jobID = request.form["jobID"]
             departmentID = request.form["departmentID"] 
 
         # Account for null jobID
-        if jobID == None:
+        if jobID is None:
             query = " INSERT INTO Jobs_has_Departments(departmentID)\
                 VALUES(( SELECT departmentID FROM Departments WHERE depName = %s));"
             cur = conn.cursor()
-            cur.execute(query, (departmentID))
+            cur.execute(query, departmentID)
             conn.commit()
 
         # Account for null departmentID
-        if departmentID == None:
+        if departmentID is None:
             query = "INSERT INTO Employees (jobID) \
             VALUES ((SELECT jobID FROM Jobs WHERE jobName = %s));"
             cur = conn.cursor()
-            cur.execute(query, (jobID))
+            cur.execute(query, jobID)
             conn.commit()
 
         # No null inputs
@@ -107,12 +110,13 @@ def add_job_dept():
         cur.execute(query4)
         departmentFK = cur.fetchall() 
         return render_template("add_job_dept.j2", jobdep_data=jobdept_data, jobIDFK=jobIDFK, departmentFK=departmentFK)
-    
+
+
 @jobdepartment.route("/edit_jobdept/<int:jobDeptID>", methods=["POST", "GET"])
 def edit_jobdept(jobDeptID):
     if request.method == "GET":
         # mySQL query to grab the info of the Employee with passed id
-        query = "SELECT * FROM Jobs_has_Departments WHERE jobDeptID = %s" % (jobDeptID)
+        query = "SELECT * FROM Jobs_has_Departments WHERE jobDeptID = %s" % jobDeptID
         cur = conn.cursor()
         cur.execute(query)
         jobdept_data = cur.fetchall()
@@ -126,7 +130,8 @@ def edit_jobdept(jobDeptID):
         departmentFK = cur.fetchall() 
 
         # Render edit_department page passing query data to the edit_department template
-        return render_template("edit_jobdept.j2", jobdept_data=jobdept_data, jobIDFK=jobIDFK, departmentFK=departmentFK )
+        return render_template("edit_jobdept.j2", jobdept_data=jobdept_data, jobIDFK=jobIDFK,
+                               departmentFK=departmentFK)
 
     # Conditional to alter table contents in database
     if request.method == "POST":

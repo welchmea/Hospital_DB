@@ -62,13 +62,14 @@ def delete_employees(employeeID):
     # Redirect back to employee page
     return redirect("/employees")
 
+
 # Route for edit functionality, updating the attributes of an employee
 # Passes the 'employeeID' value of selected department on button click via the route
 @emp_main.route("/edit_employee/<int:employeeID>", methods=["POST", "GET"])
 def edit_employee(employeeID):
     if request.method == "GET":
         # mySQL query to grab the info of the Employee with passed id
-        query = "SELECT * FROM Employees WHERE employeeID = %s" % (employeeID)
+        query = "SELECT * FROM Employees WHERE employeeID = %s" % employeeID
         cur = conn.cursor()
         cur.execute(query)
         employees_data = cur.fetchall()
@@ -86,7 +87,8 @@ def edit_employee(employeeID):
         departmentFK = cur.fetchall() 
 
         # Render edit_employee page passing query data to the edit_employee template
-        return render_template("edit_employee.j2", employees_data=employees_data, empTypeFK=empTypeFK, jobIDFK=jobIDFK, departmentFK=departmentFK )
+        return render_template("edit_employee.j2", employees_data=employees_data,
+            empTypeFK=empTypeFK, jobIDFK=jobIDFK, departmentFK=departmentFK)
 
     # Conditional to alter table contents in database
     if request.method == "POST":
@@ -143,7 +145,7 @@ def add_employee():
     # Inserts data about a new employee into the Employees entity
     if request.method == "POST":
         if request.form.get("add_employee"):
-        # Grab user form inputs
+            # Grab user form inputs
             name = request.form["name"]
             email = request.form["email"]
             phoneNum = request.form["phoneNum"]
@@ -152,7 +154,7 @@ def add_employee():
             departmentID = request.form["departmentID"] 
 
         # Account for null email and departmentID
-        if departmentID == None and email == None:
+        if departmentID is None and email is None:
             query = "INSERT INTO Employees (name, phoneNum, typeName, jobID ) \
             VALUES (%s, %s,\
                 (SELECT typeName FROM EmploymentTypes WHERE typeName=%s),\
@@ -162,7 +164,7 @@ def add_employee():
             conn.commit()
 
         # Account for null email
-        elif email == None:
+        elif email is None:
             query = "INSERT INTO Employees (name, phoneNum, typeName, jobID, departmentID) \
             VALUES (%s, %s,\
                 (SELECT typeName FROM EmploymentTypes WHERE typeName=%s), \
@@ -173,7 +175,7 @@ def add_employee():
             conn.commit()
 
         # Account for null departmentID
-        elif departmentID == None:
+        elif departmentID is None:
             query = "INSERT INTO Employees (name, email, phoneNum, typeName, jobID) \
             VALUES ( %s, %s, %s, \
                 (SELECT typeName FROM EmploymentTypes WHERE typeName=%s),\
@@ -215,6 +217,6 @@ def add_employee():
         cur.execute(query4)
         departmentFK = cur.fetchall() 
         return render_template("add_employee.j2", 
-                               employees_data=employees_data, \
+                               employees_data=employees_data,
                                empTypeFK=empTypeFK, jobIDFK=jobIDFK, 
                                departmentFK=departmentFK)

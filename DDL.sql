@@ -141,12 +141,35 @@
 
 -- Inserts sample data for scheduleID, scheduleType, shift, startTime, endTime,
 -- employeeID, departmentID, and typeName into the Schedules table.
-INSERT INTO Schedules (scheduleType, shift, startTime, endTime, employeeID, typeName, departmentID)
-VALUES('Daily','Morning', '2023-03-03 08:00:00', '2023-03-03 16:00:00', 6, 'Full Time', 3),
-('Daily','Evening', '2023-03-03 23:00:00', '2023-03-04 06:00:00', 7,'Full Time', 2),
-('Holiday', 'Swing', '2023-04-01 15:00:00', '2023-03-04 23:00:00', 8, 'Resident', 2),
-('Daily', 'Evening', '2023-04-02 23:00:00', '2023-04-03 06:00:00', 9, 'Part Time', 1),
-('Emergency', 'Morning', '2023-05-01 07:00:00', '2023-05-01 15:00:00', 10,'Part Time', 4);
+-- INSERT INTO Schedules (scheduleType, shift, startTime, endTime, employeeID, typeName, departmentID)
+-- VALUES('Daily','Morning', '2023-03-03 08:00:00', '2023-03-03 16:00:00', 6, 'Full Time', 3),
+-- ('Daily','Evening', '2023-03-03 23:00:00', '2023-03-04 06:00:00', 7,'Full Time', 2),
+-- ('Holiday', 'Swing', '2023-04-01 15:00:00', '2023-03-04 23:00:00', 8, 'Resident', 2),
+-- ('Daily', 'Evening', '2023-04-02 23:00:00', '2023-04-03 06:00:00', 9, 'Part Time', 1),
+-- ('Emergency', 'Morning', '2023-05-01 07:00:00', '2023-05-01 15:00:00', 10,'Part Time', 4);
+
+-- INSERT INTO Services (service, price)
+-- VALUES ('Single Color', '90'),
+-- ('Balayage', '200'),
+-- ('Partial Balayage', '120'),
+-- ('Partial Foil', '120'),
+-- ('Full Foil', '200'),
+-- ('Root Touch Up', '60'),
+-- ('Color Correction', '200'),
+-- ('Point Cut', '60'),
+-- ('Texturizing Cut', '70'),
+-- ('Children', '30'),
+-- ('Mens', '30'),
+-- ('Trim', '30'),
+-- ('Bang Trim', '20'),
+-- ('Keratin', '100'),
+-- ('Olaplex', '30'),
+-- ('Conditioning', '30'),
+-- ('Toner', '50'),
+-- ('Gloss', '50'),
+-- ('Special Occasion', '250'),
+-- ('Blowout', '50');
+
 
 
 -- -- Inserts sample data for empDeptID, departmentID, and typeName into the intersection 
@@ -166,3 +189,33 @@ VALUES('Daily','Morning', '2023-03-03 08:00:00', '2023-03-03 16:00:00', 6, 'Full
 -- (1, 3),
 -- (5, 1),
 -- (2, 4);
+
+-- -- Creates the table for Departments with departmentID as PK.
+CREATE TABLE IF NOT EXISTS Dept (
+    deptno int PRIMARY KEY,
+    dname varchar(100) NOT NULL,
+    loc varchar(100)
+);
+
+CREATE TABLE IF NOT EXISTS Emp (
+    empno int PRIMARY KEY,
+    ename varchar(100) NOT NULL,
+    job varchar(255) NOT NULL,
+    mgr int NOT NULL,
+    hiredate timestamp NOT NULL,
+    sal int NOT NULL,
+    comm int DEFAULT NULL,
+    deptno int
+    FOREIGN KEY (deptno)
+    REFERENCES Dept(deptno)
+    ON UPDATE CASCADE
+    ON DELETE SET NULL,
+);
+
+INSERT INTO emp (empno, ename, job, mgr, hiredate, sal, comm, deptno)
+VALUES
+(7639,'SMITH', 'CLERK', 7902, '2023-03-03 23:00:00', 'Full Time', 3),
+('Daily','Evening', '2023-03-03 23:00:00', '2023-03-04 06:00:00', 7,'Full Time', 2),
+('Holiday', 'Swing', '2023-04-01 15:00:00', '2023-03-04 23:00:00', 8, 'Resident', 2),
+('Daily', 'Evening', '2023-04-02 23:00:00', '2023-04-03 06:00:00', 9, 'Part Time', 1),
+('Emergency', 'Morning', '2023-05-01 07:00:00', '2023-05-01 15:00:00', 10,'Part Time', 4);
