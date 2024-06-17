@@ -59,7 +59,7 @@ def delete_departments(departmentID):
 def edit_department(departmentID):
     if request.method == "GET":
         # mySQL query to grab the info of the Department with our passed id
-        query = "SELECT * FROM Departments WHERE departmentID = %s" % (departmentID)
+        query = "SELECT * FROM Departments WHERE departmentID = %s" % departmentID
         cur = conn.cursor()
         cur.execute(query)
         departments_data = cur.fetchall()
@@ -70,7 +70,7 @@ def edit_department(departmentID):
     if request.method == "POST":
         if request.form.get('Update_Department'):
             # grab user form inputs
-            departmentID = (departmentID)
+            departmentID = departmentID
             depName = request.form["depName"]
             description = request.form["description"]
         # account for null description

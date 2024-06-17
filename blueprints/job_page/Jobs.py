@@ -58,7 +58,7 @@ def delete_jobs(jobID):
 def edit_job(jobID):
     if request.method == "GET":
         # mySQL query to grab the info of the Job with our passed id
-        query = "SELECT * FROM Jobs WHERE jobID = %s" % (jobID)
+        query = "SELECT * FROM Jobs WHERE jobID = %s" % jobID
         cur = conn.cursor()
         cur.execute(query)
         jobs_data = cur.fetchall()
@@ -114,7 +114,7 @@ def add_job():
         if description == "":
             query = "INSERT INTO Jobs (jobName) VALUES( %s);"
             cur = conn.cursor()
-            cur.execute(query, (jobName))
+            cur.execute(query, jobName)
             conn.commit()
 
         # no null inputs
