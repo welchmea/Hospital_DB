@@ -16,7 +16,7 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 @employType.route("/employment_types", methods=["POST", "GET"])
 def employment_types():
 
-    employment_types = None
+    employmenttypes_data = None
     # Grab employment type data from mySQl and call template to display
     if request.method == "GET":
         # mySQL query to grab all from EmploymentTypes
@@ -24,9 +24,9 @@ def employment_types():
             EmploymentTypes.hoursAllow FROM EmploymentTypes;"
         cur = conn.cursor()
         cur.execute(query)
-        employmentTypes_data = cur.fetchall()
+        employmenttypes_data = cur.fetchall()
 
-        return render_template("employmentTypes.j2", employmentTypes_data=employmentTypes_data)
+        return render_template("employmentTypes.j2", employmenttypes_data=employmenttypes_data)
     
 # route for delete functionality, deleting an employment type
 @employType.route("/delete_employmentTypes/<string:typeName>")
@@ -45,7 +45,7 @@ def delete_employmentTypes(typename):
 @employType.route("/add_employment_types", methods=["POST", "GET"])
 def add_employment_types():
 
-    employment_types_data, typename, hoursallow = None, None
+    employment_types_data, typename, hoursallow = None, None, None
     if request.method == "GET": 
         query = "SELECT * FROM EmploymentTypes"
         cur = conn.cursor()

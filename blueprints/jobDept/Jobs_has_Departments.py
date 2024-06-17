@@ -50,11 +50,11 @@ def jobdept():
 
 # Route for delete functionality, deleting selected Job Departments by jobDeptID
 @jobdepartment.route("/delete_job_dept/<int:jobDeptID>")
-def delete_job_dept(jobDeptID):
+def delete_job_dept(jobdeptid):
     # mySQL query to delete the Job Department with passed id
     query = "DELETE FROM Jobs_has_Departments WHERE jobDeptID = '%s';"
     cur = conn.cursor()
-    cur.execute(query, (jobDeptID,))
+    cur.execute(query, (jobdeptid,))
     conn.commit()
 
     # Redirect back to Job Departments page
