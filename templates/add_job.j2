@@ -3,10 +3,10 @@
 <main>
 <div class="table-div">
         <!-- form to add data in jobs-->
-        <form id="addJob" action="/add_job" method="POST">
+        <form id="add_job" action="/add_job" method="POST">
             <fieldset>
-                <label for="jobName">Job Name:</label>
-                <input type="text" value="{{request.form[jobName]}}" id="jobName" name="jobName" pattern="[A-Za-z]{0, 100}" placeholder="Enter the name of the Job" size = 50 required><br>
+                <label for="jobname">Job Name:</label>
+                <input type="text" value="{{request.form[jobname]}}" id="jobname" name="jobname" pattern="[A-Za-z]{0, 100}" placeholder="Enter the name of the Job" size = 50 required><br>
                 
                 <label for="description">Description:</label>
                 <input type="text" value="{{request.form[description]}}"id="description" name="description" pattern="[A-Za-z]{0, 255}" placeholder="Enter a brief description of job duties." size=100 ><br>
@@ -14,7 +14,7 @@
                 <input type="submit" value="Add Job" name="add_job">
             </fieldset>
         </form>
-                        <a class="add-btn" href="/jobs">Cancel</a>
+        <a class="add-btn" href="/jobs">Cancel</a>
     </div>
     </main>
 </body>

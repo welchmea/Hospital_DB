@@ -1,28 +1,9 @@
-<!-- All templates modified from CS340 flask-starter-app code -->
-<html>
-<head>
+{% include "index.html" %}
 <link rel="stylesheet" href="/static/style.css">
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-<meta charset="UTF-8">
-	<title>Edit Job</title>
-</head>
-<header>
-    <i class="material-icons" style="font-size: 16px">account_circle</i>
-    <h1>Update</h1>
-        <nav class="">
-        <a class="" href="/">Index</a>
-      <a class="" href="departments">Departments</a>
-      <a class="" href="employees">Employees</a>
-      <a class="" href="jobs">Jobs</a>
-      <a class="" href="schedules">Schedules</a>
-      <a class="" href="employmentTypes">Employment Types</a>
-      <a class="" href="jobdept">Department Jobs</a>
-      <a class="" href="dep_empTypes">Department Employment Types</a>
-    </nav>
-</header>
 <body>
 <main>
 <div class="table-div">
@@ -51,27 +32,25 @@
                 {% endfor %} 
         {% endif %} 
     </table>
-
         <!-- form to edit data in jobs-->
-        <form id="updateJob" action="/edit_job/{{jobs_data[0].jobID}}" method="post">
+        <form id="update_job" action="/edit_job/{{jobs_data[0][0]}}" method="post">
             <legend><strong>Edit Job</strong></legend>
             <fieldset>
                 <!-- We can preset form inputs to match attributes currently stored for 'id' of job to be updated via value= and accessing our passed data tuple -->
                 <!-- Create hidden form input to store the passed 'id' of the job we are editing so we can access it easily in our 'POST' method in our app.py -->
 
-                <input type="hidden" value="{{jobs_data[0].jobID}}" id="jobID" name="jobID" required>
+                <input type="hidden" value="{{jobs_data[0][0]}}" id="jobid" name="jobid" required>
 
-                <label for="model">Job Name:</label>
-                <input type="text" value="{{jobs_data[0].jobName}}"  id="jobName" name="jobName" pattern="[A-Za-z]{0, 100}" placeholder="Enter the name of a job" required>
+                <label for="jobname">Job Name:</label>
+                <input type="text" value="{{jobs_data[0][1]}}" id="jobname" name="jobname" pattern="[A-Za-z]{0, 100}" placeholder="Enter the name of a job" required>
                 <br>
 
-                <label for="year">Description:</label>
-                <input type="text" value="{{jobs_data[0].description}}"  id="description" name="description" pattern="[A-Za-z]{0, 255}" placeholder="Write a brief description of job duties." size=100 >
+                <label for="description">Description:</label>
+                <input type="text" value="{{jobs_data[0][2]}}" id="description" name="description" pattern="[A-Za-z]{0, 255}" placeholder="Write a brief description of job duties." size=100 >
                 <br>
             <input type="submit" value="Update Job" name="Update_Job">
 
             </fieldset>
-
         </form>
         <a class="add-btn" href="/jobs">Cancel</a>
     </div>

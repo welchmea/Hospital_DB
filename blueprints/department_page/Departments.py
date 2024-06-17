@@ -65,7 +65,7 @@ def edit_department(departmentid):
     
     if request.method == "GET":
         # mySQL query to grab the info of the Department with our passed id
-        query = "SELECT * FROM Departments WHERE department_id = %s" % departmentid
+        query = "SELECT * FROM Departments WHERE departmentid = %s" % departmentid
         cur = conn.cursor()
         cur.execute(query)
         departments_data = cur.fetchall()

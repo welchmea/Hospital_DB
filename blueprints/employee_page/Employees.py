@@ -95,18 +95,18 @@ def edit_employee(employeeid):
     if request.method == "POST":
         # grab user form inputs
         if request.form.get('edit_employee'):
-            employeeid = request.form["employeeID"]
+            employeeid = request.form["employeeid"]
             name = request.form["name"]
             email = request.form["email"]
-            phonenum = request.form["phoneNum"]
-            typename = request.form["typeName"]
-            jobid = request.form["jobID"]
-            departmentid = request.form["departmentID"] 
+            phonenum = request.form["phonenum"]
+            typename = request.form["typename"]
+            jobid = request.form["jobid"]
+            departmentid = request.form["departmentid"] 
 
         # Account for null email and departmentID
         if departmentid == '0' and email == "":
-            query = "UPDATE Employees SET name = %s, email = NULL, phoneNum = %s, typeName = %s, \
-            jobID = %s, departmentID = NULL WHERE employeeID = %s"
+            query = "UPDATE Employees SET name = %s, email = NULL, phonenum = %s, typename = %s, \
+            jobid = %s, departmentid = NULL WHERE employeeid = %s"
             cur = conn.cursor()
             cur.execute(query, (name, phonenum, typename, jobid, employeeid))
             conn.commit()
