@@ -31,6 +31,7 @@ def dep_empTypes():
 
     return render_template("dep_empTypes.j2", dep_empTypes_data=dep_empTypes_data)
 
+
 # Route for delete functionality, deleting selected Department EmploymentType by empDeptID
 @dept_emp.route("/delete_dep_empTypes/<int:empDeptID>")
 def delete_dep_empTypes(empDeptID):
@@ -42,6 +43,7 @@ def delete_dep_empTypes(empDeptID):
 
     # Redirect back to schedules page
     return redirect("/dep_empTypes")
+
 
 # Route for add functionality, adds the attributes of a department employmentType
 @dept_emp.route("/add_dep_empTypes", methods=["POST", "GET"])
@@ -58,7 +60,7 @@ def add_dep_empTypes():
             query = "INSERT INTO Department_has_EmploymentTypes (departmentID) \
              VALUES((SELECT departmentID FROM Departments WHERE depName = %s));"
             cur = conn.cursor()
-            cur.execute(query, (departmentID))
+            cur.execute(query, departmentID)
             conn.commit()
 
         # Account for null departmentID
@@ -66,7 +68,7 @@ def add_dep_empTypes():
             query = "INSERT INTO Department_has_EmploymentTypes (typeName) \
             VALUES((SELECT typeName FROM EmploymentTypes WHERE typeName = %s));"
             cur = conn.cursor()
-            cur.execute(query, (typeName))
+            cur.execute(query, typeName)
             conn.commit()
 
         # No null inputs

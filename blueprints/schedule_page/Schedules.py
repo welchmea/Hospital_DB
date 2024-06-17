@@ -12,6 +12,7 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # --- CRUD for Schedules ----
 # ---------------------------
 
+
 # Route for schedules page
 @emp_schedule.route("/schedules", methods=["GET"])
 def schedules():
@@ -67,7 +68,7 @@ def add_schedule():
             departmentID = request.form["departmentID"]     # FK, NOT NULL
 
         # Account for null typeName
-        if typeName == None:
+        if typeName is None:
             query = "INSERT INTO Schedules (scheduleType, shift, startTime, endTime, employeeID, departmentID) \
              VALUES( %s, %s, %s, %s, \
             (SELECT employeeID FROM Employees WHERE name=%s),\
@@ -78,7 +79,8 @@ def add_schedule():
 
         # No null inputs
         else:
-            query = "INSERT INTO Schedules (scheduleType, shift, startTime, endTime, employeeID, typeName, departmentID) \
+            query = "INSERT INTO Schedules\
+                (scheduleType, shift, startTime, endTime, employeeID, typeName, departmentID)\
              VALUES( %s, %s, %s, %s,\
             (SELECT employeeID FROM Employees WHERE name=%s),\
             (SELECT typeName FROM EmploymentTypes WHERE typeName = %s),\
@@ -107,4 +109,5 @@ def add_schedule():
         cur = conn.cursor()
         cur.execute(query4)
         empTypeFK = cur.fetchall() 
-        return render_template("add_schedule.j2", schedules_data=schedules_data, employeeFK=employeeFK, departmentFK=departmentFK, empTypeFK=empTypeFK)
+        return render_template("add_schedule.j2", schedules_data=schedules_data, 
+                               employeeFK=employeeFK, departmentFK=departmentFK, empTypeFK=empTypeFK)
