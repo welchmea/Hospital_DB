@@ -1,28 +1,4 @@
-<!-- All templates modified from CS340 flask-starter-app code -->
-<html lang="en">
-<head>
-<link rel="stylesheet" href="./static/style.css">
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-<meta charset="UTF-8">
-<title>Add New Employment Type to Departments</title>
-</head>
-<header>
-    <i class="material-icons" style="font-size: 16px">account_circle</i>
-    <h1>Add Employment Type to a Department</h1>
-        <nav class="">
-      <a class="" href="/">Index</a>
-      <a class="" href="departments">Departments</a>
-      <a class="" href="employees">Employees</a>
-      <a class="" href="jobs">Jobs</a>
-      <a class="" href="schedules">Schedules</a>
-      <a class="" href="employmentTypes">Employment Types</a>
-      <a class="" href="jobdept">Department Jobs</a>
-      <a class="" href="dep_empTypes">Department Employment Types</a>
-    </nav>
-</header>
+{% include "index.html" %}
 <body>
 <main>
 <div class="table-div">
@@ -46,7 +22,7 @@
                 <input type="submit" value="Add New Employment Type to Departments" name="add_dep_empTypes">
             </fieldset>        
         </form>
-                        <a class="add-btn"  href="/dep_empTypes">Cancel</a>
+        <a class="add-btn"  href="/dep_emp_types">Cancel</a>
     </div>
     </main>
 </body>

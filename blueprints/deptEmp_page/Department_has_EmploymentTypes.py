@@ -27,8 +27,8 @@ conn = connect(config)
 # -------------------------------------------
 
 
-@dept_emp.route("/dep_emptypes", methods=["GET"])
-def dep_emptypes():
+@dept_emp.route("/dep_emp_types", methods=["GET"])
+def dep_emp_types():
     
     dep_emptypes_data = None
     # Grabs Department has EmploymentTypes data from mySQl and call template to display
@@ -50,8 +50,8 @@ def dep_emptypes():
 
 
 # Route for delete functionality, deleting selected Department EmploymentType by empDeptID
-@dept_emp.route("/delete_dep_emptypes/<int:empDeptID>")
-def delete_dep_emptypes(empdeptid):
+@dept_emp.route("/delete_dep_emp_types/<int:empDeptID>")
+def delete_dep_emp_types(empdeptid):
     # mySQL query to delete the schedule with passed id
     query = "DELETE FROM Department_has_EmploymentTypes WHERE empDeptID = '%s';"
     cur = conn.cursor()

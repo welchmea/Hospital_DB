@@ -1,33 +1,9 @@
-<!-- All templates modified from CS340 flask-starter-app code -->
-<html>
-<head>
-<link rel="stylesheet" href="./static/style.css">
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-<meta charset="UTF-8">
-<title>Add New Employment Type</title>
-</head>
-<header>
-    <i class="material-icons" style="font-size: 16px">account_circle</i>
-    <h1>Add Employment Type</h1>
-        <nav class="">
-        <a class="" href="/">Index</a>
-      <a class="" href="departments">Departments</a>
-      <a class="" href="employees">Employees</a>
-      <a class="" href="jobs">Jobs</a>
-      <a class="" href="schedules">Schedules</a>
-      <a class="" href="employmentTypes">Employment Types</a>
-      <a class="" href="jobdept">Department Jobs</a>
-      <a class="" href="dep_empTypes">Department Employment Types</a>
-    </nav>
-</header>
+{% include "index.html" %}
 <body>
 <main>
 <div class="table-div">
         <!-- form to add data in Employment Types-->
-        <form id="addemploymentTypes" action="/add_employmentTypes" method="POST">
+        <form id="addemploymenttypes" action="/add_employmenttypes" method="POST">
             <fieldset>
                 <label for="typeName">Employment Type:</label>
                 <input type="text" value="{{request.form[typeName]}}" id="typeName" name="typeName"  pattern="[A-Za-z]{0, 20}" placeholder="e.g. Resident, PRN" size= 50 required>
@@ -36,11 +12,11 @@
                 <label for="hoursAllow">Hours Allowed to Work:</label>
                 <input type="number" value="{{request.form[hoursAllow]}}" id="hoursAllow" name="hoursAllow" placeholder="Per Week" required>
             
-            <input type="submit" value="Add Employment Type" name="add_employmentTypes" >
+            <input type="submit" value="Add Employment Type" name="add_employmenttypes" >
 
             </fieldset>
         </form>
-                    <a  class="add-btn" href="/employmentTypes">Cancel</a>
+                    <a  class="add-btn" href="/employment_types">Cancel</a>
     </div>
     </main>
 </body>
