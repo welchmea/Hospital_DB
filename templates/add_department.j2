@@ -5,10 +5,10 @@
 
 <div class="table-div">
         <!-- form to add data in departments-->
-        <form id="addDepartment" action="/add_department" method="POST">
+        <form id="add_department" action="/add_department" method="POST">
             <fieldset>
-                <label for="depName">Department Name:</label>
-                <input type="text" value="{{request.form[depName]}}"  id="depName" name="depName" pattern="[A-Za-z]{0, 30}" placeholder="Enter the name of a Department." size=50 required>
+                <label for="depname">Department Name:</label>
+                <input type="text" value="{{request.form[depname]}}"  id="depname" name="depname" pattern="[A-Za-z]{0, 30}" placeholder="Enter the name of a Department." size=50 required>
                 <br>
 
                 <label for="description">Description:</label>

@@ -11,35 +11,34 @@
                 <label for="email">Email:</label>
                 <input type="email" value="{{request.form[2]}}" id="email" name="email" pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" placeholder="username@email.com" size=40 ><br>
                 
-                <label for="phoneNum">Phone Number:</label>
-                <input type="text" value="{{request.form[3]}}" id="phoneNum" name="phoneNum" placeholder="800-555-1212" required><br>
+                <label for="phonenum">Phone Number:</label>
+                <input type="text" value="{{request.form[3]}}" id="phonenum" name="phonenum" placeholder="800-555-1212" required><br>
                     
-                <label for="typeName">Employment Status:</label>
-				<select class="form-control" id="typeName" name="typeName" required>
+                <label for="typename">Employment Status:</label>
+				<select class="form-control" id="typename" name="typename" required>
                 <option value="0">&nbsp;</option>
-                    {% for data in empTypeFK %}
+                    {% for data in emptypefk %}
                         <option value="{{data[0]}}">{{data[0]}}</option>
                     {% endfor %} 
 				</select><br>
                     
                 <label for="name">Job Name:</label>
-                <select class="form-control" id="jobID" name="jobID" required>
+                <select class="form-control" id="jobid" name="jobid" required>
                 <option value="0">&nbsp;</option>
-					{% for data in jobIDFK %}
+					{% for data in jobidfk %}
                         <option value="{{data[1]}}">{{data[1]}}</option>
                     {% endfor %} 
                 </select><br>
 
-                <label for="departmentID">Department Name:</label>
-			    <select class="form-control" id="departmentID" name="departmentID">
+                <label for="departmentid">Department Name:</label>
+			    <select class="form-control" id="departmentid" name="departmentid">
                 <option value="0">&nbsp;</option>
-					{% for data in departmentFK %}
+					{% for data in departmentfk %}
                         <option value="{{data[1]}}">{{data[1]}}</option>
                     {% endfor %} 
 		        <br></select>
             
             <input type="submit" value="Add Employee" name="add_employee" >
-
             </fieldset>
         </form>
                     <a class="add-btn" href="/employees">Cancel</a>

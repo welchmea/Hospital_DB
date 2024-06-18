@@ -42,13 +42,13 @@
                 <input type="hidden" value="{{jobs_data[0][0]}}" id="jobid" name="jobid" required>
 
                 <label for="jobname">Job Name:</label>
-                <input type="text" value="{{jobs_data[0][1]}}" id="jobname" name="jobname" pattern="[A-Za-z]{0, 100}" placeholder="Enter the name of a job" required>
+                <input type="text" value="{{jobs_data[0][1]}}" id="jobname" name="jobname" placeholder="Enter the name of a job" required>
                 <br>
 
                 <label for="description">Description:</label>
-                <input type="text" value="{{jobs_data[0][2]}}" id="description" name="description" pattern="[A-Za-z]{0, 255}" placeholder="Write a brief description of job duties." size=100 >
+                <input type="text" value="{{jobs_data[0][2]}}" id="description" name="description" placeholder="Write a brief description of job duties." size=100 >
                 <br>
-            <input type="submit" value="Update Job" name="Update_Job">
+            <input type="submit" value="Update Job" name="update_job">
 
             </fieldset>
         </form>

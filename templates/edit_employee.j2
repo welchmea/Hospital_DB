@@ -36,48 +36,48 @@
         {% endif %}
     </table>
         <!-- form to edit data in employees-->
-        <form id="edit_employee" action="/edit_employee/{{employees_data[0].employeeid}}" method="POST">
+        <form id="edit_employee" action="/edit_employee/{{employees_data[0][0]}}" method="POST">
             <legend><strong>Edit Employee</strong></legend>
                 <fieldset>
                 <!-- Preset form inputs to match attributes currently stored for 'employeeID' of employee to be updated via value= and accessing our passed data tuple -->
                 <!-- Create hidden form input to store the passed 'employeeID' of employee being edited so it can bed accessed in 'POST' method in app.py -->
-                <input type="hidden" value="{{employees_data[0].employeeid}}" id="employeeID" name="employeeID" required>
+                <input type="hidden" value="{{employees_data[0][0]}}" id="employeeid" name="employeeid" required>
                 <label for="name">Employee Name:</label>
-                <input type="text" value="{{employees_data[0].name}}" id="name" name="name" pattern="[A-Za-z]{0, 45}" required><br>
+                <input type="text" value="{{employees_data[0][1]}}" id="name" name="name" required><br>
 
                 <label for="email">Email:</label>
-                <input type="email" value="{{employees_data[0].email}}" id="email" name="email"pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" ><br>
+                <input type="email" value="{{employees_data[0][2]}}" id="email" name="email"><br>
 
-                <label for="phoneNum">Phone Number:</label>
-                <input type="text" value="{{employees_data[0].phonenum}}"  id="phoneNum" name="phoneNum" required><br>
+                <label for="phonenum">Phone Number:</label>
+                <input type="text" value="{{employees_data[0][3]}}"  id="phonenum" name="phonenum" required><br>
 
-                <label for="typeName">Employment Status:</label>
-                <select class="form-control" id="typeName" name="typeName" required><br>
+                <label for="typename">Employment Status:</label>
+                <select class="form-control" id="typename" name="typename" required><br>
 
                     {% for data in emptypefk %}
                         <option value="{{data[0]}}" >{{data[0]}}</option>
                     {% endfor %}
                 </select>
 
-                <label for="jobID">Job Name:</label>
-                <select class="form-control" id="jobID" name="jobID" pattern="[0-4]{1}" placeholder="" required>
+                <label for="jobid">Job Name:</label>
+                <select class="form-control" id="jobid" name="jobid" placeholder="" required>
 
                     {% for data in jobidfk %}
-                        {% if data['jobID'] == employees_data[0].jobid %}
-                            <option value="{{data[1]}}">{{data[1]}}</option>
+                        {% if data['jobid'] == employees_data[0].jobid %}
+                            <option value="{{data[0]}}">{{data[1]}}</option>
                             {% else %}
-                            <option value="{{data[1]}}">{{data[1]}}</option>
+                            <option value="{{data[0]}}">{{data[1]}}</option>
                         {% endif %}
                     {% endfor %}
                 </select>
 
-                <label for="departmentID">Department Name:</label>
-                <select class="form-control" id="departmentID" name="departmentID">
+                <label for="departmentid">Department Name:</label>
+                <select class="form-control" id="departmentid" name="departmentid">
                     {% for data in departmentfk %}
-                        {% if data['departmentID'] == employees_data[0].departmentid %}
-                            <option value="{{data[1] }}">{{data[1]}}</option>
+                        {% if data['departmentid'] == employees_data[0].departmentid %}
+                            <option value="{{data[0] }}">{{data[1]}}</option>
                         {% else %}
-                            <option value="{{data[1]}}">{{data[1]}}</option>
+                            <option value="{{data[0]}}">{{data[1]}}</option>
                         {% endif %}
                     {% endfor %}
                 </select>

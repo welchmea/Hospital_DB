@@ -4,47 +4,47 @@
 
 <div class="table-div">
     <!-- form to add data in Schedules-->
-    <form id="addSchedules" action="/add_schedule" method="POST">
+    <form id="add_schedule" action="/add_schedule" method="POST">
         <fieldset>
-            <label for="scheduleType">Schedule Type:</label>
-            <input type="text" value="{{request.form[scheduleType]}}"  id="scheduleType" name="scheduleType" pattern="[A-Za-z]{0, 50}" placeholder="e.g. Daily, Holiday..." size=50 required>
+            <label for="scheduletype">Schedule Type:</label>
+            <input type="text" value="{{request.form[scheduletype]}}"  id="scheduletype" name="scheduletype" placeholder="e.g. Daily, Holiday..." size=50 required>
             <br>
 
             <label for="shift">Shift:</label>
-            <input type="text" value="{{request.form[shift]}}" id="shift" name="shift" pattern="[A-Za-z]{0, 50}" placeholder="e.g. Night, Swing..." size=50 required >
+            <input type="text" value="{{request.form[shift]}}" id="shift" name="shift" placeholder="e.g. Night, Swing..." size=50 required >
             <br>
 
-            <label for="startTime">Start Time:</label>
-            <input type="datetime-local" value="{{request.form[startTime]}}" id="startTime" name="startTime" required>
+            <label for="starttime">Start Time:</label>
+            <input type="datetime-local" value="{{request.form[starttime]}}" id="starttime" name="starttime" required>
             <br>
 
-            <label for="endTime">End Time:</label>
-            <input type="datetime-local" value="{{request.form[endTime]}}"  id="endTime" name="endTime" size=50 required>
+            <label for="endtime">End Time:</label>
+            <input type="datetime-local" value="{{request.form[endtime]}}"  id="endtime" name="endtime" size=50 required>
             <br>
 
-            <label for="employeeID">Employee Name:</label>
-            <select class="form-control" id="employeeID" name="employeeID" pattern="[0-4]{1}" placeholder="" required>
+            <label for="employeeid">Employee Name:</label>
+            <select class="form-control" id="employeeid" name="employeeid" placeholder="" required>
             
-            {% for data in employeeFK %}
-                <option value="{{data[1]}}">{{data[1]}}</option>
+            {% for data in employeefk %}
+                <option value="{{data[0]}}">{{data[1]}}</option>
             {% endfor %} 
             </select>
             <br>
 
-            <label for="typeName">Employment Status:</label>
-            <select class="form-control" id="typeName" name="typeName" >
+            <label for="typename">Employment Status:</label>
+            <select class="form-control" id="typename" name="typename" >
 
-            {% for data in empTypeFK %}
+            {% for data in emptypefk %}
                 <option value="{{data[0]}}" >{{data[0]}}</option>
             {% endfor %} 
             </select>
             <br>
 
-            <label for="departmentID">Department Name:</label>
-            <select class="form-control" id="departmentID" name="departmentID" pattern="[0-4]{1}" placeholder="">
+            <label for="departmentid">Department Name:</label>
+            <select class="form-control" id="departmentid" name="departmentid" placeholder="">
             
-            {% for data in departmentFK %}
-                <option value="{{data[1]}}">{{data[1]}}</option>
+            {% for data in departmentfk %}
+                <option value="{{data[0]}}">{{data[1]}}</option>
             {% endfor %} 
             </select>
         <input type="submit" value="Add Schedule" name="add_schedule">

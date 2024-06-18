@@ -61,8 +61,6 @@ def delete_departments(departmentid):
 @emp_department.route("/edit_department/<int:departmentid>", methods=["POST", "GET"])
 def edit_department(departmentid):
     
-    depname, description, departments_data = None, None, None
-    
     if request.method == "GET":
         # mySQL query to grab the info of the Department with our passed id
         query = "SELECT * FROM Departments WHERE departmentid = %s" % departmentid
@@ -74,24 +72,24 @@ def edit_department(departmentid):
 
     # queries to DB using data from edit template
     if request.method == "POST":
-        if request.form.get('Update_Department'):
+        if request.form.get('update_department'):
             # grab user form inputs
             departmentid = departmentid
             depname = request.form["depname"]
             description = request.form["description"]
-        # account for null description
-        if description == "":
-            query = "UPDATE Departments SET depname = %s WHERE Departments.departmentid = %s"
-            cur = conn.cursor()
-            cur.execute(query, (depname, departmentid))
-            conn.commit()
+            # account for null description
+            if description == "":
+                query = "UPDATE Departments SET depname = %s WHERE Departments.departmentid = %s"
+                cur = conn.cursor()
+                cur.execute(query, (depname, departmentid))
+                conn.commit()
 
-        # no null inputs
-        else:
-            query = "UPDATE Departments SET depname = %s, description = %s WHERE Departments.departmentid = %s"
-            cur = conn.cursor()
-            cur.execute(query, [depname, description, departmentid])
-            conn.commit()
+            # no null inputs
+            else:
+                query = "UPDATE Departments SET depname = %s, description = %s WHERE Departments.departmentid = %s"
+                cur = conn.cursor()
+                cur.execute(query, [depname, description, departmentid])
+                conn.commit()
 
         # redirect back to main department page
         return redirect("/departments")

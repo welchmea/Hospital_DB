@@ -34,7 +34,7 @@
     </table>
 
         <!-- form to edit data in departments-->
-        <form id="updateDepartment" action="/edit_department/{{departments_data[0][0]}}" method="post">
+        <form id="update_department" action="/edit_department/{{departments_data[0][0]}}" method="post">
             <legend><strong>Edit Department</strong></legend>
                 <fieldset>
                     <!-- We can preset form inputs to match attributes currently stored for 'id' of department to be updated via value= and accessing our passed data tuple -->
@@ -43,10 +43,10 @@
                     <input type="hidden" value="{{departments_data[0][0]}}" class="form-control" id="departmentid" name="departmentid" required>
 
                     <label for="model">Department Name:</label>
-                    <input type="text" value="{{departments_data[0].depname}}" id="depname" name="depname" pattern="[A-Za-z]{0, 30}" required>
+                    <input type="text" value="{{departments_data[0][1]}}" id="depname" name="depname" pattern="[A-Za-z]{0, 30}" required>
                     <br>
                     <label for="year">Description:</label>
-                    <input type="text" value="{{departments_data[0].description}}" id="description" name="description" pattern="[A-Za-z]{0, 100}" size=100>
+                    <input type="text" value="{{departments_data[0][2]}}" id="description" name="description" pattern="[A-Za-z]{0, 100}" size=100>
                 
                 <input type="submit" value="Update Department" name="Update_Department">
 

@@ -77,14 +77,14 @@ def edit_job(jobid):
 
             # account for null description
             if description == "":
-                query = "UPDATE Jobs SET jobname = %s WHERE Jobs.jobid = %s"
+                query = "UPDATE Jobs SET jobname = %s WHERE jobid = %s"
                 cur = conn.cursor()
                 cur.execute(query, (jobname, jobid))
                 conn.commit()
 
             # no null inputs
             else:
-                query = "UPDATE Jobs SET jobname = %s, description = %s WHERE Jobs.jobid = %s"
+                query = "UPDATE Jobs SET jobname = %s, description = %s WHERE jobid = %s"
                 cur = conn.cursor()
                 cur.execute(query, (jobname, description, jobid))
                 conn.commit()
