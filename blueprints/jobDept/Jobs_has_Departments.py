@@ -36,11 +36,11 @@ def jobdept():
     # Grabs Job Departments data from mySQl and call template to display
     if request.method == "GET":
         # mySQL query to grab all from Job Departments
-        query = "SELECT Jobs_has_Departments.jobDeptID, \
-            Jobs.jobName, Departments.depName \
+        query = "SELECT Jobs_has_Departments.jobdeptid, \
+            Jobs.jobname, Departments.depname \
             FROM Jobs_has_Departments \
-            LEFT JOIN Jobs ON Jobs.jobID = Jobs_has_Departments.jobID \
-            LEFT JOIN Departments ON Departments.departmentID = Jobs_has_Departments.departmentID;"
+            LEFT JOIN Jobs ON Jobs.jobid = Jobs_has_Departments.jobid \
+            LEFT JOIN Departments ON Departments.departmentid = Jobs_has_Departments.departmentid;"
         cur = conn.cursor()
         cur.execute(query)
         jobdept_data = cur.fetchall()
@@ -48,11 +48,11 @@ def jobdept():
     return render_template("jobdept.j2", jobdept_data=jobdept_data)
 
 
-# Route for delete functionality, deleting selected Job Departments by jobDeptID
-@jobdepartment.route("/delete_job_dept/<int:jobDeptID>")
+# Route for delete functionality, deleting selected Job Departments by jobdeptid
+@jobdepartment.route("/delete_job_dept/<int:jobdeptid>")
 def delete_job_dept(jobdeptid):
     # mySQL query to delete the Job Department with passed id
-    query = "DELETE FROM Jobs_has_Departments WHERE jobDeptID = '%s';"
+    query = "DELETE FROM Jobs_has_Departments WHERE jobdeptid = '%s';"
     cur = conn.cursor()
     cur.execute(query, (jobdeptid,))
     conn.commit()
@@ -64,52 +64,51 @@ def delete_job_dept(jobdeptid):
 @jobdepartment.route("/add_job_dept", methods=["POST", "GET"])
 def add_job_dept():
     
-    departmentid, jobid, jobdept_data = None, None, None
     # Inserts data about a new job department into the job departments entity
     if request.method == "POST":
         if request.form.get("add_job_dept"):
             # Grab user form inputs
-            jobid = request.form["jobID"]
-            departmentid = request.form["departmentID"] 
+            jobid = request.form["jobid"]
+            departmentid = request.form["departmentid"] 
 
-        # Account for null jobID
-        if jobid is None:
-            query = " INSERT INTO Jobs_has_Departments(departmentID)\
-                VALUES(( SELECT departmentID FROM Departments WHERE depName = %s));"
-            cur = conn.cursor()
-            cur.execute(query, departmentid)
-            conn.commit()
+            # Account for null jobid
+            if jobid is None:
+                query = " INSERT INTO Jobs_has_Departments(departmentid)\
+                    VALUES(( SELECT departmentid FROM Departments WHERE depname = %s));"
+                cur = conn.cursor()
+                cur.execute(query, departmentid)
+                conn.commit()
 
-        # Account for null departmentID
-        if departmentid is None:
-            query = "INSERT INTO Employees (jobID) \
-            VALUES ((SELECT jobID FROM Jobs WHERE jobName = %s));"
-            cur = conn.cursor()
-            cur.execute(query, jobid)
-            conn.commit()
+            # Account for null departmentid
+            if departmentid is None:
+                query = "INSERT INTO Employees (jobid) \
+                VALUES ((SELECT jobid FROM Jobs WHERE jobname = %s));"
+                cur = conn.cursor()
+                cur.execute(query, jobid)
+                conn.commit()
 
-        # No null inputs
-        else:
-            query = "INSERT INTO Jobs_has_Departments(jobID, departmentID)\
-                VALUES((SELECT jobID FROM Jobs WHERE jobName = %s),\
-                (SELECT departmentID FROM Departments WHERE depName = %s));"
-            cur = conn.cursor()
-            cur.execute(query, (jobid, departmentid))
-            conn.commit()
+            # No null inputs
+            else:
+                query = "INSERT INTO Jobs_has_Departments(jobid, departmentid)\
+                    VALUES((SELECT jobid FROM Jobs WHERE jobname = %s),\
+                    (SELECT departmentid FROM Departments WHERE depname = %s));"
+                cur = conn.cursor()
+                cur.execute(query, (jobid, departmentid))
+                conn.commit()
 
-        # Redirect back to departments page after executing the add query
-        return redirect("/jobdept")
+            # Redirect back to departments page after executing the add query
+            return redirect("/jobdept")
 
     if request.method == "GET":
         query = "SELECT * FROM Jobs_has_Departments"
         cur = conn.cursor()
         cur.execute(query)
         jobdept_data = cur.fetchall()
-        query3 = "SELECT jobID, jobName FROM Jobs;"
+        query3 = "SELECT jobid, jobname FROM Jobs;"
         cur = conn.cursor()
         cur.execute(query3)
         jobidfk = cur.fetchall()
-        query4 = "SELECT departmentID, depName FROM Departments"
+        query4 = "SELECT departmentid, depname FROM Departments"
         cur = conn.cursor()
         cur.execute(query4)
         departmentfk = cur.fetchall() 

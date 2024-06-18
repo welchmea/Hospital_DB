@@ -36,33 +36,33 @@
         </table>
 
         <!-- form to edit data in job department-->
-        <form id="edit_jobdept" action="/edit_jobdept/{{jobdept_data[0].jobdeptid}}" method="POST">
+        <form id="edit_jobdept" action="/edit_jobdept/{{jobdept_data[0][0]}}" method="POST">
             <legend><strong>Edit Job in Department</strong></legend>
             <fieldset>
                 <!-- Create hidden form input to store the passed 'jobDeptID' of department job being edited so it can be accessed in 'POST' method in app.py -->
 
-                <input type="hidden" value="{{jobdept_data[0].jobdeptid}}" class="form-control" id="jobdeptid" name="jobdeptid" required>
+                <input type="hidden" value="{{jobdept_data[0][0]}}" class="form-control" id="jobdeptid" name="jobdeptid" required>
 
-                <label for="jobID">Job Name:</label>
-                <select class="form-control" id="jobID" name="jobID" pattern="[0-4]{1}" placeholder="" required>
+                <label for="jobid">Job Name:</label>
+                <select class="form-control" id="jobid" name="jobid" pattern="[0-4]{1}" placeholder="" required>
 
                     {% for data in jobidfk %}
-                        {% if data['jobID'] == jobdept_data[0].jobid %}
-                        <option value="{{data[1]}}" SELECTED>{{data[1]}}</option>
+                        {% if data['jobid'] == jobdept_data[0].jobid %}
+                        <option value="{{data[0]}}" SELECTED>{{data[1]}}</option>
                         {% else %}
-                        <option value="{{data[1]}}">{{data[1]}}</option>
+                        <option value="{{data[0]}}">{{data[1]}}</option>
                         {% endif %}
                     {% endfor %} 
                 </select>
 
-                <label for="departmentID">Department Name:</label>
-                <select class="form-control" id="departmentID" name="departmentID" pattern="[0-4]{1}" required>
+                <label for="departmentid">Department Name:</label>
+                <select class="form-control" id="departmentid" name="departmentid" pattern="[0-4]{1}" required>
 
                 {% for data in departmentfk %}
-                    {% if data['departmentID'] == jobdept_data[0].departmentid %}
-                    <option value="{{data[1] }}"SELECTED >{{data[1]}}</option>
+                    {% if data['departmentid'] == jobdept_data[0].departmentid %}
+                    <option value="{{data[0] }}"SELECTED >{{data[1]}}</option>
                     {% else %}
-                    <option value="{{data[1]}}">{{data[1]}}</option>
+                    <option value="{{data[0]}}">{{data[1]}}</option>
                     {% endif %}
                 {% endfor %} 
                 </select>

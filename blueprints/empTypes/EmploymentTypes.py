@@ -43,20 +43,20 @@ def employment_types():
         return render_template("employmentTypes.j2", employmenttypes_data=employmenttypes_data)
     
 # route for delete functionality, deleting an employment type
-@employType.route("/delete_employmenttypes/<string:typeName>")
+@employType.route("/delete_employmenttypes/<string:typename>")
 def delete_employmenttypes(typename):
 
     # mySQL query to delete the selection with the passed id
-    query = "DELETE FROM EmploymentTypes WHERE typeName = %s;"
+    query = "DELETE FROM EmploymentTypes WHERE typename = %s;"
     cur = conn.cursor()
     cur.execute(query, (typename,))
     conn.commit()
 
-    return redirect("/employmentTypes")
+    return redirect("/employment_types")
 
 # add a new employmentType to the DB
-@employType.route("/add_employment_types", methods=["POST", "GET"])
-def add_employment_types():
+@employType.route("/add_employmenttypes", methods=["POST", "GET"])
+def add_employmenttypes():
 
     if request.method == "GET": 
         query = "SELECT * FROM EmploymentTypes"
@@ -67,15 +67,15 @@ def add_employment_types():
     
     if request.method == "POST":
         # grab user inputs
-        if request.form.get("add_employmentTypes"):
-            typename = request.form["typeName"]
-            hoursallow = request.form["hoursAllow"]
+        if request.form.get("add_employmenttypes"):
+            typename = request.form["typename"]
+            hoursallow = request.form["hoursallow"]
 
             # no null values 
-            query = "INSERT INTO EmploymentTypes (typeName, hoursAllow) VALUES(%s, %s);"
+            query = "INSERT INTO EmploymentTypes (typename, hoursallow) VALUES(%s, %s);"
             cur = conn.cursor()
             cur.execute(query, (typename, hoursallow))
             conn.commit()
 
         # redirect back to jobs page after we execute the add query
-        return redirect("/employmentTypes")
+        return redirect("/employment_types")

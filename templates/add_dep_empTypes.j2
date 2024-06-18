@@ -3,26 +3,26 @@
 <main>
 <div class="table-div">
         <!-- form to add data in departments has employmentTypes-->
-        <form id="add_dep_empTypes" action="/add_dep_empTypes" method="POST">
+        <form id="add_dep_emptypes" action="/add_dep_emptypes" method="POST">
             <fieldset>
-                <label for="departmentID">Department Name:</label>
-				<select class="form-control" id="departmentID" name="departmentID">
-					{% for data in departmentFK %}
+                <label for="departmentid">Department Name:</label>
+				<select class="form-control" id="departmentid" name="departmentid">
+					{% for data in departmentfk %}
                         <option value="{{data[1]}}">{{data[1]}}</option>
                     {% endfor %} 
 				<br></select>
                     
-                <label for="typeName">Employment Status:</label>
-				<select class="form-control" id="typeName" name="typeName">
-                    {% for data in empTypeFK %}
+                <label for="typename">Employment Status:</label>
+				<select class="form-control" id="typename" name="typename">
+                    {% for data in emptypefk %}
                         <option value="{{data[0]}}">{{data[0]}}</option>
                     {% endfor %} 
 				</select>
                 
-                <input type="submit" value="Add New Employment Type to Departments" name="add_dep_empTypes">
+                <input type="submit" value="Add New Employment Type to Departments" name="add_dep_emptypes">
             </fieldset>        
         </form>
-        <a class="add-btn"  href="/dep_emp_types">Cancel</a>
+        <a class="add-btn"  href="/dep_emptypes">Cancel</a>
     </div>
     </main>
 </body>

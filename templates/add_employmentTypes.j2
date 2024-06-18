@@ -3,14 +3,14 @@
 <main>
 <div class="table-div">
         <!-- form to add data in Employment Types-->
-        <form id="addemploymenttypes" action="/add_employmenttypes" method="POST">
+        <form id="add_employmenttypes" action="/add_employmenttypes" method="POST">
             <fieldset>
-                <label for="typeName">Employment Type:</label>
-                <input type="text" value="{{request.form[typeName]}}" id="typeName" name="typeName"  pattern="[A-Za-z]{0, 20}" placeholder="e.g. Resident, PRN" size= 50 required>
+                <label for="typename">Employment Type:</label>
+                <input type="text" value="{{request.form[typename]}}" id="typename" name="typename"  pattern="[A-Za-z]{0, 20}" placeholder="e.g. Resident, PRN" size= 50 required>
                 </br>
 
-                <label for="hoursAllow">Hours Allowed to Work:</label>
-                <input type="number" value="{{request.form[hoursAllow]}}" id="hoursAllow" name="hoursAllow" placeholder="Per Week" required>
+                <label for="hoursallow">Hours Allowed to Work:</label>
+                <input type="number" value="{{request.form[hoursallow]}}" id="hoursallow" name="hoursallow" placeholder="Per Week" required>
             
             <input type="submit" value="Add Employment Type" name="add_employmenttypes" >
 

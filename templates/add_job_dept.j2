@@ -7,18 +7,18 @@
     <form id="add_job_dept" action="/add_job_dept" method="POST">
     <legend><strong>New Job Department </strong></legend>
         <fieldset>
-            <label for="jobID">Job Name:</label>
-            <select class="form-control" id="jobID" name="jobID" placeholder="" required>
+            <label for="jobid">Job Name:</label>
+            <select class="form-control" id="jobid" name="jobid" placeholder="" required>
 
-                {% for data in jobIDFK %}
+                {% for data in jobidfk %}
                     <option value="{{data[1]}}">{{data[1]}}</option>
                 {% endfor %} 
             </select>
 
-            <label for="departmentID">Department Name:</label>
-            <select class="form-control" id="departmentID" name="departmentID" pattern="[0-4]{1}" placeholder="" required>
+            <label for="departmentid">Department Name:</label>
+            <select class="form-control" id="departmentid" name="departmentid" pattern="[0-4]{1}" placeholder="" required>
 
-                {% for data in departmentFK %}
+                {% for data in departmentfk %}
                     <option value="{{data[1]}}">{{data[1]}}</option>
                 {% endfor %} 
             <br></select>
