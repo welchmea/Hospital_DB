@@ -1,30 +1,30 @@
 from flask import Blueprint, render_template, request, redirect
 import psycopg2
 import os
-from ...config import load_config 
+# from ...config import load_config 
 
 employType = Blueprint('empTypes', __name__)
 
 # -----------------------------
 # - CRUD for Employment Types -
 # -----------------------------
-def connect(config):
-    """ Connect to the PostgreSQL database server """
-    try:
-        # connecting to the PostgreSQL server
-        with psycopg2.connect(**config) as conn:
-            print('Connected to the PostgreSQL server.')
-            return conn
-    except (psycopg2.DatabaseError, Exception) as error:
-        print(error)
+# def connect(config):
+#     """ Connect to the PostgreSQL database server """
+#     try:
+#         # connecting to the PostgreSQL server
+#         with psycopg2.connect(**config) as conn:
+#             print('Connected to the PostgreSQL server.')
+#             return conn
+#     except (psycopg2.DatabaseError, Exception) as error:
+#         print(error)
+# config = load_config()
+# conn = connect(config)
+
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
-# DATABASE_URL = os.environ['DATABASE_URL']
-
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-
-config = load_config()
-conn = connect(config)
 
 
 # route for main employmentTypes page
